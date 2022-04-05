@@ -1,0 +1,7 @@
+{
+  "name": "evenTicket",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
