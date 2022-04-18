@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Crear una nueva cuenta </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="5" size-xl="3" offset-xl="1">
+        <form name="registerForm" [formGroup]="registerForm">
+          <ion-item-group mode="md" class="ion-margin-top">
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="clipboard-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Nombre: </ion-label>
+              <ion-input autocomplete="firstName" formControlName="firstName" type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="clipboard-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Apellido: </ion-label>
+              <ion-input autocomplete="lastName" formControlName="lastName" type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="person-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> DNI: </ion-label>
+              <ion-input autocomplete="dniNumber" formControlName="dniNumber" type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="call-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Celular: </ion-label>
+              <ion-input autocomplete="phoneNumber" formControlName="phoneNumber" type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="mail-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Email: </ion-label>
+              <ion-input autocomplete="email" formControlName="email" type="email"> </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="lock-closed-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Contraseña: </ion-label>
+              <ion-input autocomplete="password" formControlName="password" type="password"> </ion-input>
+            </ion-item>
+          </ion-item-group>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border ion-hide-lg-up">
+  <ion-toolbar class="ion-no-padding">
+    <ion-button (click)="createAccount()" expand="full" shape="round" color="primary"> Crear cuenta </ion-button>
+  </ion-toolbar>
+</ion-footer>

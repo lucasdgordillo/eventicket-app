@@ -4,9 +4,12 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
+import { RegisterPage } from './pages/register/register.page';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RegisterPage
+  ],
   imports: [
     CommonModule,
     IonicModule,
