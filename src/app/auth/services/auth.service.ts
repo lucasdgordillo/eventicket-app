@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 import { Storage } from '@capacitor/storage';
 import { UserResponse } from '../models/user-response.model';
 import jwt_decode from 'jwt-decode';
@@ -47,5 +47,45 @@ export class AuthService {
           this.user$.next(decodedToken.user);
         })
       );
+  }
+
+  getUserRole(): Observable<any> {
+    return this.user$.asObservable().pipe(
+      switchMap((user: User) => {
+        return of(user?.role);
+      })
+    );
+  }
+
+  get isUserLoggedIn(): Observable<boolean> {
+    return this.user$.asObservable().pipe(
+      switchMap((user: User) => {
+        const isUserAuthenticated = user !== null;
+        return of(isUserAuthenticated);
+      })
+    );
+  }
+
+  isTokenInStorage(): Observable<boolean> {
+    return from(
+      Storage.get({
+        key: 'token',
+      })
+    ).pipe(
+      map((data: { value: string }) => {
+        if (!data || !data.value) return null;
+
+        const decodedToken: UserResponse = jwt_decode(data.value);
+        const jwtExpirationInMsSinceUnixEpoch = decodedToken.exp * 1000;
+        const isExpired =
+          new Date() > new Date(jwtExpirationInMsSinceUnixEpoch);
+
+        if (isExpired) return null;
+        if (decodedToken.user) {
+          this.user$.next(decodedToken.user);
+          return true;
+        }
+      })
+    );
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { IntroPage } from './pages/intro/intro.page';
+import { TabsPage } from './pages/tabs/tabs.page';
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import { IntroPage } from './pages/intro/intro.page';
     IonicModule
   ],
   declarations: [
-    IntroPage
+    IntroPage,
+    TabsPage
   ],
   exports: [],
   entryComponents: [],

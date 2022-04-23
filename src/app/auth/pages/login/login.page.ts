@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { CustomValidators } from 'src/app/shared/validators/custom-validators';
 import { AuthService } from '../../services/auth.service';
@@ -18,7 +19,8 @@ export class LoginPage {
 
   constructor(
     private loadingHelper: LoadingHelper,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   loginAction() {
@@ -33,6 +35,7 @@ export class LoginPage {
 
         console.log("user registrado con exito");
         this.loadingHelper.dismiss();
+        this.router.navigate(['/tabs/events']);
       },
       (error) => {
         this.loadingHelper.dismiss();

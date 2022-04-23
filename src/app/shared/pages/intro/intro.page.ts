@@ -10,7 +10,7 @@ export class IntroPage implements OnInit {
   public defaultImage = '/assets/images/intro/photoparty1.jpeg';
 
   constructor(
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit() {
