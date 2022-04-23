@@ -14,8 +14,8 @@ export class RegisterPage {
   public registerForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    dniNumber: new FormControl('', Validators.compose([Validators.required, CustomValidators.number])),
-    phoneNumber: new FormControl('', Validators.compose([Validators.required, CustomValidators.number])),
+    dniNumber: new FormControl('', Validators.compose([Validators.required])),
+    phoneNumber: new FormControl('', Validators.compose([Validators.required])),
     email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
     password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
   });

@@ -3,143 +3,33 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="!displayLoginWithConnection">{{ 'log_in' | translate }}</ion-title>
-    <ion-title *ngIf="displayLoginWithConnection">{{ 'login_page.third_parties.connect' | translate: { platform: platformChosen } }}</ion-title>
+    <ion-title> Iniciar sesion </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-grid class="ion-no-padding">
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="6" size-lg="5" size-xl="3" offset-xl="1">
-        <ion-row class="ion-hide-md-down">
-          <ion-col>
-            <h1 class="ion-padding-top">{{ 'welcome_back' | translate }}</h1>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="12" size-md="12" size-lg="12">
-            <ion-segment mode="md"(ionChange)="onSegmentChange($event)" [value]="selectedSegment">
-              <ion-segment-button value="travelUser">
-                <ion-label class="ion-text-capitalize item-text-wrap">{{ 'travel_employee' | translate }}</ion-label>
-              </ion-segment-button>
-              <ion-segment-button value="invitedUser">
-                <ion-label class="ion-text-capitalize">{{ 'friends_family' | translate }}</ion-label>
-              </ion-segment-button>
-            </ion-segment>
-          </ion-col>
-        </ion-row>
-        <ion-row class="ion-padding" *ngIf="displayLoginWithConnection">
-          <ion-col>
-            <div class="secondary-content">{{ 'login_page.third_parties.account_not_found' | translate: { platform: platformChosen } }}</div>
-          </ion-col>
-        </ion-row>
-        <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
-          <ion-item-group mode="md">
-            <ion-item *ngIf="selectedSegment === 'travelUser'">
-              <ion-spinner slot="start" class="ion-align-self-center" *ngIf="airlinesPending || !airlines?.length" name="lines"></ion-spinner>
-              <ion-icon
-                *ngIf="!airlinesPending && airlines?.length"
-                class="ion-align-self-center"
-                name="briefcase-outline"
-                color="primary"
-                slot="start">
-              </ion-icon>
-              <ion-label position="floating">
-                {{ 'company' | translate }}
-              </ion-label>
-              <ion-input
-                (ionBlur)="hideError(true, 'company')" 
-                (keyup)="hideError(false, 'company')"
-                (ionFocus)="onCompanyClick()"
-                readonly="true"
-                formControlName="airline"
-                data-appium="login-airline-input"
-                [attr.disabled]="airlinesPending || !airlines?.length"
-                type="text">
-              </ion-input>
+        <form name="registerForm" [formGroup]="loginForm">
+          <ion-item-group mode="md" class="ion-margin-top">
+            <ion-item>
+              <ion-icon class="ion-align-self-center" name="mail-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Email: </ion-label>
+              <ion-input autocomplete="email" formControlName="email" type="email"> </ion-input>
             </ion-item>
             <ion-item>
-              <ion-icon
-                class="ion-align-self-center"
-                name="mail-outline"
-                color="primary"
-                slot="start">
-              </ion-icon>
-              <ion-label position="floating">
-                {{ usernamePlaceholder | translate }}
-              </ion-label>
-              <ion-input
-                (ionBlur)="hideError(true, 'username')" 
-                (keyup)="hideError(false, 'username')"
-                autocomplete="username"
-                formControlName="employee_number"
-                data-appium="login-airline-input"
-                type="text">
-              </ion-input>
-            </ion-item>
-            <id90-toggle-password-input formControlName="password" [value]="password.value"></id90-toggle-password-input>
-            <ion-item *ngIf="requireRecaptcha && showRecaptcha">
-              <ion-col>
-                <div class="form-group">
-                  <div nbRecaptcha [key]="recaptchaPublicKey" formControlName="recaptcha"></div>
-                </div>
-              </ion-col>
+              <ion-icon class="ion-align-self-center" name="lock-closed-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Contraseña: </ion-label>
+              <ion-input autocomplete="password" formControlName="password" type="password"> </ion-input>
             </ion-item>
           </ion-item-group>
         </form>
-        <ion-row class="ion-align-items-center">
-          <ion-col size="12" size-md="8">
-            <div class="ion-text-right ion-text-md-left">
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="onForgotPasswordClick()"
-                routerLink="/forgot-password"
-                [queryParams]="{ airline: selectedSegment === 'travelUser' }">
-                {{ 'forgot_password.title' | translate }}?
-              </ion-button>
-            </div>
-            <div class="ion-text-right ion-text-md-left">
-              <ion-button
-                fill="clear"
-                size="small"
-                (click)="onNeedHelpLoginClick()">
-                {{ 'need_help_logging_in?' | translate }}
-              </ion-button>
-            </div>
-          </ion-col>
-          <ion-col class="ion-text-right ion-hide-md-down ion-margin-end">
-            <ion-button *ngIf="!displayLoginWithConnection" expand="full" (click)="login()">{{ 'log_in' | translate }}</ion-button>
-            <ion-button *ngIf="displayLoginWithConnection" expand="full" (click)="loginAndVinculate()">{{ 'login_page.third_parties.login_connect' | translate: { platform: platformChosen } }}</ion-button>
-          </ion-col>
-        </ion-row>
-        <div class="errors-container">
-          <id90-error-display
-            [isShown]="invalid(company, 'company')"
-            [fieldLabel]="'company' | translate"
-            [control]="company">
-          </id90-error-display>
-          <id90-error-display
-            [isShown]="invalid(username, 'username')"
-            [fieldLabel]="'email_employee_number' | translate"
-            [control]="username">
-          </id90-error-display>
-          <id90-error-display
-            [isShown]="invalid(password, 'password')"
-            [fieldLabel]="'password' | translate"
-            [control]="password">
-          </id90-error-display>
-        </div>
-      </ion-col>
-      <ion-col class="ion-hide-xl-down" size="7" offset="1">
-        <div class="customer-benefits"></div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer class="ion-no-border ion-hide-md-up">
+<ion-footer class="ion-no-border ion-hide-lg-up">
   <ion-toolbar class="ion-no-padding">
-    <ion-button *ngIf="!displayLoginWithConnection" expand="full" (click)="login()">{{ 'log_in' | translate }}</ion-button>
-    <ion-button *ngIf="displayLoginWithConnection" expand="full" (click)="loginAndVinculate()">{{ 'login_page.third_parties.login_connect' | translate: { platform: platformChosen } }}</ion-button>
+    <ion-button (click)="loginAction()" expand="full" shape="round" color="primary"> Ingresar </ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -1,4 +1,4 @@
-export interface NewUser {
+export interface User {
   firstName: string;
   lastName: string;
   dniNumber: string;

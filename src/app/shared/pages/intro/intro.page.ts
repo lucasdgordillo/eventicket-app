@@ -19,4 +19,8 @@ export class IntroPage implements OnInit {
   openCreateAccountPage() {
     this.router.navigate(['/create-account']);
   }
+
+  openLoginPage() {
+    this.router.navigate(['/login']);
+  }
 }
