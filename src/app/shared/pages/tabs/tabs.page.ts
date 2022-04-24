@@ -20,5 +20,7 @@ export class TabsPage implements OnInit {
     this.authService.getUserRole().subscribe((role: Role) => {
       this.role = role;
     });
+
+    this.role = Role.USER;
   }
 }

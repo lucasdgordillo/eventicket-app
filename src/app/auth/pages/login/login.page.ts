@@ -31,9 +31,6 @@ export class LoginPage {
       const { email, password } = this.loginForm.value;
 
       this.authService.login(email, password).subscribe((user) => {
-        console.log(user);
-
-        console.log("user registrado con exito");
         this.loadingHelper.dismiss();
         this.router.navigate(['/tabs/events']);
       },

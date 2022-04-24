@@ -1,3 +1,29 @@
+
+<ion-header translucent>
+	<ion-toolbar>
+		<ion-row>
+			<ion-col class="ion-no-padding" size="10">
+				<ion-searchbar showCancelButton="focus" placeholder="Buscar evento"></ion-searchbar>
+			</ion-col>
+			<ion-col class="ion-no-padding" size="2">
+				<ion-icon class="filter-icon" name="filter-circle-outline"></ion-icon>
+			</ion-col>
+		</ion-row>
+	</ion-toolbar>
+</ion-header>
 <ion-content fullscreen="true">
-	<h1> Hola hola </h1>
+	<ion-grid class="ion-padding">
+		<ion-row>
+			<ion-col *ngFor="let card of cards" size="12" class="ion-no-padding">
+				<event-card
+					[eventName]="card.name"
+					[eventDate]="card.date"
+					[eventImage]="card.image"
+					[eventPlace]="card.place"
+					[eventOrganizator]="card.organizator"	
+				>
+				</event-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
