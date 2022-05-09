@@ -1,0 +1,25 @@
+.error-container {
+  border-left: 5px solid #b2323a;
+  background: var(--ion-color-danger);
+  color: var(--ion-color-white);
+  margin: 10px;
+  padding: 10px;
+  transform: translateY(0);
+  transition: 0.2s;
+  transition-timing-function: ease-in;
+
+  .primary-content {
+    color: var(--ion-color-white);
+  }
+
+  &.is-hidden {
+    color: transparent;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transform: translateX(-500px);
+    transition: height 0.5s, padding 0.2s, margin 0.2s, transform 0.2s,
+    color 0.2s;
+    transition-timing-function: ease-out;
+  }
+}

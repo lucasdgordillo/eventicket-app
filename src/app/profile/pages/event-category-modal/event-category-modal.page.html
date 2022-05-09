@@ -1,0 +1,48 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"> Cerrar </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!editMode"> Nueva categoría </ion-title>
+    <ion-title *ngIf="editMode"> Editar categoría </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <form name="categoryForm" [formGroup]="categoryForm">
+          <ion-item class="rounded-item">
+            <ion-label position="floating"> Nombre: </ion-label>
+            <ion-input autocomplete="name" formControlName="name" type="text"></ion-input>
+          </ion-item>
+        </form>
+        <div class="container">
+          <error-display
+            [isShown]="invalid(name)"
+            [fieldLabel]="'Nombre'"
+            [control]="name"
+          >
+          </error-display>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border ion-hide-lg-up">
+  <ion-toolbar class="ion-no-padding">
+    <ion-row *ngIf="!editMode">
+      <ion-col size="12">
+        <ion-button (click)="createCategoryAction()" expand="full" shape="round" color="primary"> Crear </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="editMode">
+      <ion-col size="6">
+        <ion-button (click)="updateCategoryAction()" expand="full" shape="round" color="primary"> Actualizar </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="deleteCategoryAction()" expand="full" shape="round" color="danger"> Eliminar </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

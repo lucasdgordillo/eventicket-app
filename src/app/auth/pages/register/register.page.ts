@@ -31,7 +31,6 @@ export class RegisterPage {
     } else {
       this.loadingHelper.present();
       this.authService.register(this.registerForm.value).subscribe(() => {
-        console.log("user registrado con exito");
         this.loadingHelper.dismiss();
       },
       (error) => {

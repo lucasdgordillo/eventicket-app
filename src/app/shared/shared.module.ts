@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { IntroPage } from './pages/intro/intro.page';
 import { TabsPage } from './pages/tabs/tabs.page';
+import { CardItemComponent } from './components/card-item/card-item.component';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 
 @NgModule({
   imports: [
@@ -11,9 +13,14 @@ import { TabsPage } from './pages/tabs/tabs.page';
   ],
   declarations: [
     IntroPage,
-    TabsPage
+    TabsPage,
+    CardItemComponent,
+    ErrorDisplayComponent
   ],
-  exports: [],
+  exports: [
+    CardItemComponent,
+    ErrorDisplayComponent
+  ],
   entryComponents: [],
   providers: []
 })

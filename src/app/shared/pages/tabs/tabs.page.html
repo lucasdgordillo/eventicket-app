@@ -2,8 +2,8 @@
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="events">
       <ion-icon name="calendar-outline"></ion-icon>
-      <ion-label *ngIf="role === 'user'">Eventos</ion-label>
-      <ion-label *ngIf="role === 'organizator'">Mis eventos</ion-label>
+      <ion-label *ngIf="role === 'user' || role === 'admin'">Eventos</ion-label>
+      <ion-label *ngIf="role === 'productor'">Mis eventos</ion-label>
       <ion-label *ngIf="role === 'checker'">Eventos Escaneados</ion-label>
     </ion-tab-button>
 
@@ -12,7 +12,7 @@
       <ion-label>Mis tickets</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="role === 'organizator'" tab="reports">
+    <ion-tab-button *ngIf="role === 'productor'" tab="reports">
       <ion-icon name="podium-outline"></ion-icon>
       <ion-label>Reportes</ion-label>
     </ion-tab-button>

@@ -21,6 +21,6 @@ export class TabsPage implements OnInit {
       this.role = role;
     });
 
-    this.role = Role.USER;
+    this.role = Role.ADMIN;
   }
 }

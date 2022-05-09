@@ -24,3 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// CUSTOM CSS CLASSES
+
+.add-button {
+  font-size: 30px;
+  padding-right: 2px;
+}
+
+.rounded-item {
+  border-radius: 10px;
+}

@@ -12,11 +12,11 @@ export class LoadingHelper {
     private loadingCtr: LoadingController
   ) {}
 
-  public async present() {
+  public async present(message: string = 'cargando...') {
     if (!this.isModalOpen) {
       this.isModalOpen = true;
       this.loadingModal = this.loadingCtr.create({
-        message: 'cargando...'
+        message: message
       });
       await (await this.loadingModal).present();
     }
