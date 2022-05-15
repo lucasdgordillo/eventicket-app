@@ -1,0 +1,48 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"> Cerrar </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!editMode"> Nuevo RRPP Autorizado </ion-title>
+    <ion-title *ngIf="editMode"> Editar RRPP Autorizado </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <form name="rrppForm" [formGroup]="rrppForm">
+          <ion-item class="rounded-item">
+            <ion-label position="floating"> Nombre completo: </ion-label>
+            <ion-input autocomplete="fullName" formControlName="fullName" type="text"></ion-input>
+          </ion-item>
+          <ion-item class="rounded-item">
+            <ion-label position="floating"> Porcentaje de venta: </ion-label>
+            <ion-input autocomplete="salePercentage" formControlName="salePercentage" type="number"></ion-input>
+          </ion-item>
+        </form>
+        <div class="container">
+          <error-display [isShown]="invalid(fullName)" [fieldLabel]="'Nombre completo'" [control]="fullName"></error-display>
+          <error-display [isShown]="invalid(salePercentage)" [fieldLabel]="'Porcentaje de venta'" [control]="salePercentage"></error-display>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border ion-hide-lg-up">
+  <ion-toolbar class="ion-no-padding">
+    <ion-row *ngIf="!editMode">
+      <ion-col size="12">
+        <ion-button (click)="createAction()" expand="full" shape="round" color="primary"> Crear </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="editMode">
+      <ion-col size="6">
+        <ion-button (click)="updateAction()" expand="full" shape="round" color="primary"> Actualizar </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="deleteAction()" expand="full" shape="round" color="danger"> Eliminar </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

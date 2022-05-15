@@ -1,21 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { MessageHelper } from 'src/app/shared/helpers/message.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
-import { EventCategoryModalPage } from '../event-category-modal/event-category-modal.page';
+import { RrppModalPage } from '../rrpp-modal/rrpp-modal.page';
 
 @Component({
-  selector: 'event-categories-page',
-  templateUrl: 'event-categories.page.html',
-  styleUrls: ['./event-categories.page.scss'],
+  selector: 'event-rrpps-page',
+  templateUrl: 'event-rrpps.page.html',
+  styleUrls: ['./event-rrpps.page.scss'],
 })
 
-export class EventCategoriesPage implements OnInit, OnDestroy {
-  categories = [];
+export class EventRrppsPage implements OnInit, OnDestroy {
+  rrpps = [];
   private ngUnsubscribe = new Subject();
 
   constructor(
@@ -26,20 +25,20 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loadCategories();
+    this.loadRrpps();
   }
 
-  loadCategories() {
-    this.eventsService.getAllCategories().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
-      this.categories = response.data;
+  async loadRrpps() {
+    this.eventsService.getAllRrpps().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
+      this.rrpps = response.data;
     });
   }
 
-  public async openCategoryModal(categoryData = null) {
+  public async openRrppModal(rrppData = null) {
     const modal = await this.modalController.create({
-      component: EventCategoryModalPage,
+      component: RrppModalPage,
       componentProps: {
-        categoryData: categoryData
+        rrppData: rrppData
       },
       swipeToClose: true
     });
@@ -50,10 +49,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     if (data) {
       if (data.action === 'create') {
         this.loadingHelper.present();
-        this.eventsService.createCategory({ name: data.value }).subscribe(() => {
+        this.eventsService.createRrpp(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría creada con exito!');
-          this.loadCategories();
+          this.messageHelper.presentToast('RRPP creado con exito!');
+          this.loadRrpps();
         },
         (error) => {
           this.loadingHelper.dismiss();
@@ -62,10 +61,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
       }
       if (data.action === 'update') {
         this.loadingHelper.present();
-        this.eventsService.editCategory(data.value).subscribe(() => {
+        this.eventsService.editRrpp(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría actualizada con exito!');
-          this.loadCategories();
+          this.messageHelper.presentToast('RRPP actualizado con exito!');
+          this.loadRrpps();
         },
         (error) => {
           this.loadingHelper.dismiss();
@@ -74,10 +73,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
       }
       if (data.action === 'delete') {
         this.loadingHelper.present();
-        this.eventsService.deleteCategory(data.value).subscribe(() => {
+        this.eventsService.deleteRrpp(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría eliminada con exito!');
-          this.loadCategories();
+          this.messageHelper.presentToast('RRPP eliminado con exito!');
+          this.loadRrpps();
         },
         (error) => {
           this.loadingHelper.dismiss();
@@ -87,9 +86,9 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     }
   }
 
-  public editCategory(event) {
-    const categoryData = this.categories.find((category) => { if (category.id == event.id) { return category; }});
-    this.openCategoryModal(categoryData);
+  public editRrpp(event) {
+    const rrppData = this.rrpps.find((rrpp) => { if (rrpp.id == event.id) { return rrpp; }});
+    this.openRrppModal(rrppData);
   }
 
   ngOnDestroy() {

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Lugares de Eventos </ion-title>
+    <ion-buttons slot="end">
+      <ion-icon class="add-button" (click)="openEventPlaceModal()" name="add-circle-outline" color="primary"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="light-gray-background">
+  <ion-row class="ion-padding-top">
+    <ion-col size="12" class="ion-no-padding" *ngFor="let place of eventPlaces">
+      <card-item-component
+        [id]="place.id"
+        [name]="place.name"
+        (editEventAction)="editEventPlace($event)"
+      ></card-item-component>
+    </ion-col>
+  </ion-row>
+</ion-content>

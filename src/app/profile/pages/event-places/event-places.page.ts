@@ -1,21 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { MessageHelper } from 'src/app/shared/helpers/message.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
-import { EventCategoryModalPage } from '../event-category-modal/event-category-modal.page';
+import { EventPlaceModalPage } from '../event-place-modal/event-place-modal.page';
 
 @Component({
-  selector: 'event-categories-page',
-  templateUrl: 'event-categories.page.html',
-  styleUrls: ['./event-categories.page.scss'],
+  selector: 'event-places-page',
+  templateUrl: 'event-places.page.html',
+  styleUrls: ['./event-places.page.scss'],
 })
 
-export class EventCategoriesPage implements OnInit, OnDestroy {
-  categories = [];
+export class EventPlacesPage implements OnInit, OnDestroy {
+  eventPlaces = [];
   private ngUnsubscribe = new Subject();
 
   constructor(
@@ -26,20 +25,20 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loadCategories();
+    this.loadEventPlaces();
   }
 
-  loadCategories() {
-    this.eventsService.getAllCategories().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
-      this.categories = response.data;
+  loadEventPlaces() {
+    this.eventsService.getAllEventPlaces().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
+      this.eventPlaces = response.data;
     });
   }
 
-  public async openCategoryModal(categoryData = null) {
+  public async openEventPlaceModal(eventPlaceData = null) {
     const modal = await this.modalController.create({
-      component: EventCategoryModalPage,
+      component: EventPlaceModalPage,
       componentProps: {
-        categoryData: categoryData
+        placeData: eventPlaceData
       },
       swipeToClose: true
     });
@@ -50,10 +49,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     if (data) {
       if (data.action === 'create') {
         this.loadingHelper.present();
-        this.eventsService.createCategory({ name: data.value }).subscribe(() => {
+        this.eventsService.createEventPlace(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
           this.messageHelper.presentToast('Categoría creada con exito!');
-          this.loadCategories();
+          this.loadEventPlaces();
         },
         (error) => {
           this.loadingHelper.dismiss();
@@ -62,10 +61,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
       }
       if (data.action === 'update') {
         this.loadingHelper.present();
-        this.eventsService.editCategory(data.value).subscribe(() => {
+        this.eventsService.editEventPlace(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría actualizada con exito!');
-          this.loadCategories();
+          this.messageHelper.presentToast('Lugar actualizado con exito!');
+          this.loadEventPlaces();
         },
         (error) => {
           this.loadingHelper.dismiss();
@@ -74,10 +73,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
       }
       if (data.action === 'delete') {
         this.loadingHelper.present();
-        this.eventsService.deleteCategory(data.value).subscribe(() => {
+        this.eventsService.deleteEventPlace(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría eliminada con exito!');
-          this.loadCategories();
+          this.messageHelper.presentToast('Lugar eliminado con exito!');
+          this.loadEventPlaces();
         },
         (error) => {
           this.loadingHelper.dismiss();
@@ -87,9 +86,9 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     }
   }
 
-  public editCategory(event) {
-    const categoryData = this.categories.find((category) => { if (category.id == event.id) { return category; }});
-    this.openCategoryModal(categoryData);
+  public editEventPlace(event) {
+    const eventPlaceData = this.eventPlaces.find((eventPlace) => { if (eventPlace.id == event.id) { return eventPlace; }});
+    this.openEventPlaceModal(eventPlaceData);
   }
 
   ngOnDestroy() {

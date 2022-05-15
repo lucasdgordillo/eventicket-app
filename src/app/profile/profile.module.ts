@@ -7,6 +7,10 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileSettingsPage } from './pages/profile-settings/profile-settings.page';
 import { EventCategoriesPage } from './pages/event-categories/event-categories.page';
 import { EventCategoryModalPage } from './pages/event-category-modal/event-category-modal.page';
+import { EventPlacesPage } from './pages/event-places/event-places.page';
+import { EventRrppsPage } from './pages/event-rrrps/event-rrpps.page';
+import { EventPlaceModalPage } from './pages/event-place-modal/event-place-modal.page';
+import { RrppModalPage } from './pages/rrpp-modal/rrpp-modal.page';
 
 @NgModule({
   imports: [
@@ -20,7 +24,12 @@ import { EventCategoryModalPage } from './pages/event-category-modal/event-categ
   declarations: [
     ProfileSettingsPage,
     EventCategoriesPage,
-    EventCategoryModalPage
+    EventCategoryModalPage,
+    EventPlacesPage,
+    EventRrppsPage,
+    EventPlaceModalPage,
+    EventRrppsPage,
+    RrppModalPage
   ],
   providers: []
 })
