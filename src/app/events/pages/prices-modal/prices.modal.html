@@ -1,0 +1,21 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"> Cerrar </ion-button>
+    </ion-buttons>
+    <ion-title> Listado de precios </ion-title>
+    <ion-buttons slot="end">
+			<ion-icon class="add-button" (click)="addNewPrice()" name="add-circle-outline" color="primary"></ion-icon>
+		</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-list *ngFor="let item of prices">
+    <item-price-component [id]="item.id" [name]="item.name" [price]="item.price" (itemUpdateEvent)="updatePricesArray($event)"></item-price-component>
+  </ion-list>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="updatePrices()"> Guardar </ion-button>
+  </ion-toolbar>
+</ion-footer>

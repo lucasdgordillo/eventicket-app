@@ -1,6 +1,12 @@
 
 <ion-header translucent>
-	<ion-toolbar>
+	<ion-toolbar *ngIf="role === 'productor'">
+		<ion-title> Mis Eventos </ion-title>
+		<ion-buttons slot="end">
+			<ion-icon class="add-button" (click)="createNewEvent()" name="add-circle-outline" color="primary"></ion-icon>
+		</ion-buttons>
+	</ion-toolbar>
+	<ion-toolbar *ngIf="role !== 'productor'">
 		<ion-row>
 			<ion-col class="ion-no-padding" size="10">
 				<ion-searchbar showCancelButton="focus" placeholder="Buscar evento"></ion-searchbar>

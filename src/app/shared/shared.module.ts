@@ -5,6 +5,8 @@ import { IntroPage } from './pages/intro/intro.page';
 import { TabsPage } from './pages/tabs/tabs.page';
 import { CardItemComponent } from './components/card-item/card-item.component';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
+import { DatetimeModal } from './pages/datetime-modal/datetime.modal';
+import { ItemDatetimeComponent } from './components/item-datetime/item-datetime.component';
 
 @NgModule({
   imports: [
@@ -15,11 +17,15 @@ import { ErrorDisplayComponent } from './components/error-display/error-display.
     IntroPage,
     TabsPage,
     CardItemComponent,
-    ErrorDisplayComponent
+    ErrorDisplayComponent,
+    DatetimeModal,
+    ItemDatetimeComponent
   ],
   exports: [
     CardItemComponent,
-    ErrorDisplayComponent
+    ErrorDisplayComponent,
+    DatetimeModal,
+    ItemDatetimeComponent
   ],
   entryComponents: [],
   providers: []

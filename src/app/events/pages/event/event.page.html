@@ -1,0 +1,77 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'Volver'"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Nuevo Evento </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <form name="eventForm" [formGroup]="eventForm">
+        <ion-item-divider mode="ios" class="ion-text-center ion-margin-bottom">
+          <ion-label> Información general </ion-label>
+        </ion-item-divider>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Nombre del evento: </ion-label>
+          <ion-input autocomplete="title" formControlName="title" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Descripción: </ion-label>
+          <ion-input autocomplete="description" formControlName="description" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Nombre del artista: </ion-label>
+          <ion-input autocomplete="artist" formControlName="artist" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Categoria: </ion-label>
+          <ion-select formControlName="category">
+            <ion-select-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item-divider mode="ios" class="ion-margin-top">
+          <ion-label> Fechas del evento</ion-label>
+        </ion-item-divider>
+        <item-datetime-component [label]="'Fecha:'" [datePresentation]="'date'" (selectDateTimeEvent)="setDateTimeValue($event, 'date', 'YYYY-MM-DD')"></item-datetime-component>
+        <item-datetime-component [label]="'Hora de comienzo:'" [datePresentation]="'time'" (selectDateTimeEvent)="setDateTimeValue($event, 'startTime')"></item-datetime-component>
+        <item-datetime-component [label]="'Hora de finalización:'" [datePresentation]="'time'" (selectDateTimeEvent)="setDateTimeValue($event, 'endTime')"></item-datetime-component>
+        <item-datetime-component [label]="'Fecha/hora para apertura de ventas:'" [datePresentation]="'date-time'" (selectDateTimeEvent)="setDateTimeValue($event, 'releaseSellDateTime', 'YYYY-MM-DD h:mm')"></item-datetime-component>
+        <item-datetime-component [label]="'Fecha/hora para cierre de ventas:'" [datePresentation]="'date-time'" (selectDateTimeEvent)="setDateTimeValue($event, 'endSellDateTime', 'YYYY-MM-DD h:mm')"></item-datetime-component>
+        <ion-item-divider mode="ios" class="ion-margin-top">
+          <ion-label> Precios tanda de tickets </ion-label>
+        </ion-item-divider>
+        <ion-row class="ion-text-center ion-margin-top">
+          <ion-col size="12">
+            <ion-button expand="block" fill="outline" (click)="openPricesModal()"> Listado de precios </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider mode="ios" class="ion-margin-top">
+          <ion-label> Imagenes </ion-label>
+        </ion-item-divider>
+        <ion-row class="ion-text-center ion-margin-top">
+          <ion-col size="12">
+            <ion-button expand="block" fill="outline" (click)="selectImage()"> Cargar imagenes </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+      <div class="container">
+        <error-display [isShown]="invalid(title)" [fieldLabel]="'Titulo'" [control]="title"></error-display>
+        <error-display [isShown]="invalid(description)" [fieldLabel]="'Descripción'" [control]="description"></error-display>
+        <error-display [isShown]="invalid(artist)" [fieldLabel]="'Nombre del artista'" [control]="artist"></error-display>
+        <error-display [isShown]="invalid(category)" [fieldLabel]="'Categoria'" [control]="category"></error-display>
+        <error-display [isShown]="invalid(date)" [fieldLabel]="'Fecha de evento'" [control]="date"></error-display>
+        <error-display [isShown]="invalid(startTime)" [fieldLabel]="'Hora de comienzo'" [control]="startTime"></error-display>
+        <error-display [isShown]="invalid(endTime)" [fieldLabel]="'Hora de finalización'" [control]="endTime"></error-display>
+        <error-display [isShown]="invalid(releaseSellDateTime)" [fieldLabel]="'Fecha/hora para apertura'" [control]="releaseSellDateTime"></error-display>
+        <error-display [isShown]="invalid(endSellDateTime)" [fieldLabel]="'Fecha/hora para cierre'" [control]="endSellDateTime"></error-display>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="confirmCreateEvent()"> Crear evento </ion-button>
+  </ion-toolbar>
+</ion-footer>

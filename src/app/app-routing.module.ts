@@ -43,6 +43,16 @@ const routes: Routes = [
     }
   ]},
   {
+    path: 'events',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./events/events.module').then(m => m.EventsModule)
+      }
+    ]
+  },
+  {
     path: 'profile',
     children: [
       {

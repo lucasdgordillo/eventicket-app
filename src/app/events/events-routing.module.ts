@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EventPage } from './pages/event/event.page';
 import { EventsPage } from './pages/events/events.page';
 
 const routes: Routes = [
@@ -7,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: EventsPage
   },
+  {
+    path: 'event',
+    component: EventPage
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

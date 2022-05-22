@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { CustomValidators } from 'src/app/shared/validators/custom-validators';
 import { Rrpp } from '../../models/rrpp.interface';
 
@@ -17,20 +18,29 @@ export class RrppModalPage implements OnInit {
   public rrppForm: FormGroup = new FormGroup({
     id: new FormControl(''),
     fullName: new FormControl('', Validators.required),
-    salePercentage: new FormControl('', [ Validators.required, CustomValidators.number])
+    salePercentage: new FormControl('', [ Validators.required, CustomValidators.number]),
+    productor: new FormControl('')
   });
 
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.setProductorId();
     if (this.rrppData) {
       this.editMode = true;
       this.rrppForm.get('id').setValue(this.rrppData.id);
       this.rrppForm.get('fullName').setValue(this.rrppData.fullName);
       this.rrppForm.get('salePercentage').setValue(this.rrppData.salePercentage);
     }
+  }
+
+  setProductorId() {
+    this.authService.getUserId().subscribe((userId: number) => {
+      this.rrppForm.get('productor').setValue(userId);
+    });
   }
 
   dismiss(data = null) {
@@ -45,7 +55,7 @@ export class RrppModalPage implements OnInit {
         action: 'create',
         value: this.rrppForm.value
       }
-      this.dismiss(data);  
+      this.dismiss(data);
     }
   }
 

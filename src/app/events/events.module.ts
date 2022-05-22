@@ -6,6 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventsPage } from './pages/events/events.page';
 import { EventCardComponent } from './components/event-card/event-card.component';
+import { EventPage } from './pages/event/event.page';
+import { PricesModal } from './pages/prices-modal/prices.modal';
+import { ItemPriceComponent } from './components/item-price/item-price.component';
 
 @NgModule({
   imports: [
@@ -18,7 +21,10 @@ import { EventCardComponent } from './components/event-card/event-card.component
   ],
   declarations: [
     EventsPage,
-    EventCardComponent
+    EventCardComponent,
+    EventPage,
+    PricesModal,
+    ItemPriceComponent
   ],
   providers: []
 })

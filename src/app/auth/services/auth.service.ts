@@ -57,6 +57,14 @@ export class AuthService {
     );
   }
 
+  getUserId(): Observable<any> {
+    return this.user$.asObservable().pipe(
+      switchMap((user: User) => {
+        return of(user?.id);
+      })
+    );
+  }
+
   get isUserLoggedIn(): Observable<boolean> {
     return this.user$.asObservable().pipe(
       switchMap((user: User) => {
