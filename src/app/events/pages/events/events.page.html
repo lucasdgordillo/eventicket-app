@@ -1,5 +1,5 @@
 
-<ion-header translucent>
+<ion-header class="ion-no-border" [translucent]="true">
 	<ion-toolbar *ngIf="role === 'productor'">
 		<ion-title> Mis Eventos </ion-title>
 		<ion-buttons slot="end">
@@ -20,13 +20,15 @@
 <ion-content fullscreen="true">
 	<ion-grid class="ion-padding">
 		<ion-row>
-			<ion-col *ngFor="let card of cards" size="12" class="ion-no-padding">
+			<ion-col *ngFor="let event of events" size="12" class="ion-no-padding">
 				<event-card
-					[eventName]="card.name"
-					[eventDate]="card.date"
-					[eventImage]="card.image"
-					[eventPlace]="card.place"
-					[eventOrganizator]="card.organizator"	
+					[eventId]="event.id"
+					[eventName]="event.title"
+					[eventDate]="formatDate(event.date)"
+					[eventImage]="event.imagePath"
+					[eventPlace]="event.place.name"
+					[eventOrganizator]="event.productor.displayName"
+					(cardClickedEventAction)="openEventDetail($event)"
 				>
 				</event-card>
 			</ion-col>

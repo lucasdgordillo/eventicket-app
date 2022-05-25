@@ -31,6 +31,12 @@
             <ion-select-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</ion-select-option>
           </ion-select>
         </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Lugar del evento: </ion-label>
+          <ion-select formControlName="place">
+            <ion-select-option *ngFor="let place of places" [value]="place.id">{{ place.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
         <ion-item-divider mode="ios" class="ion-margin-top">
           <ion-label> Fechas del evento</ion-label>
         </ion-item-divider>
@@ -61,6 +67,7 @@
         <error-display [isShown]="invalid(description)" [fieldLabel]="'Descripción'" [control]="description"></error-display>
         <error-display [isShown]="invalid(artist)" [fieldLabel]="'Nombre del artista'" [control]="artist"></error-display>
         <error-display [isShown]="invalid(category)" [fieldLabel]="'Categoria'" [control]="category"></error-display>
+        <error-display [isShown]="invalid(place)" [fieldLabel]="'Lugar del evento'" [control]="place"></error-display>
         <error-display [isShown]="invalid(date)" [fieldLabel]="'Fecha de evento'" [control]="date"></error-display>
         <error-display [isShown]="invalid(startTime)" [fieldLabel]="'Hora de comienzo'" [control]="startTime"></error-display>
         <error-display [isShown]="invalid(endTime)" [fieldLabel]="'Hora de finalización'" [control]="endTime"></error-display>

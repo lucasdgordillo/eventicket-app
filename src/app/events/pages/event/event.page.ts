@@ -18,6 +18,7 @@ import { MessageHelper } from "src/app/shared/helpers/message.helper";
 
 export class EventPage implements OnInit {
   categories = [];
+  places = [];
   prices = [];
   productorId;
   showPricesError: boolean = false;
@@ -30,6 +31,7 @@ export class EventPage implements OnInit {
     imagePath: new FormControl(''),
     productor: new FormControl(''),
     category: new FormControl('', Validators.required),
+    place: new FormControl('', Validators.required),
     prices: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     startTime: new FormControl('', Validators.required),
@@ -50,6 +52,7 @@ export class EventPage implements OnInit {
 
   ngOnInit() {
     this.loadCategories();
+    this.loadPlaces();
     this.setProductorId();
   }
 
@@ -59,9 +62,15 @@ export class EventPage implements OnInit {
     });
   }
 
-  async loadCategories() {
+  loadCategories() {
     this.eventsService.getAllCategories().subscribe((categories) => {
       this.categories = categories.data;
+    });
+  }
+
+  loadPlaces() {
+    this.eventsService.getAllEventPlaces().subscribe((places) => {
+      this.places = places.data;
     });
   }
 
@@ -193,6 +202,10 @@ export class EventPage implements OnInit {
 
   get category(): FormControl {
     return this.eventForm.get('category') as FormControl;
+  }
+
+  get place(): FormControl {
+    return this.eventForm.get('place') as FormControl;
   }
 
   get date(): FormControl {

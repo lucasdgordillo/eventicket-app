@@ -1,4 +1,5 @@
 import { EventCategory } from "src/app/profile/models/event-category.interface";
+import { EventPlace } from "src/app/profile/models/event-place.interface";
 
 export interface Event {
   id?: number;
@@ -7,6 +8,7 @@ export interface Event {
   artist?: string;
   imagePath?: string;
   category?: EventCategory;
+  place?: EventPlace;
   prices?: [];
   date?: string;
   startTime?: string;

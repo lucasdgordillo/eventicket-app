@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
+import { EventsService } from 'src/app/shared/services/events.service';
 import { Event } from '../../models/event.interface';
 
 @Component({
@@ -14,21 +16,24 @@ import { Event } from '../../models/event.interface';
 export class EventsPage implements OnInit {
   cards = [];
   role: Role = Role.USER;
+  events = [];
 
   constructor(
     private loadingHelper: LoadingHelper,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private eventsService: EventsService
   ) { }
 
   ngOnInit() {
+    this.loadingHelper.present();
     this.authService.getUserRole().subscribe((role: Role) => {
       this.role = role;
     });
 
-    this.role = Role.PRODUCTOR;
+    this.role = Role.USER;
 
-    console.log(this.role);
+    this.loadEvents();
 
     this.cards = [
       { name: 'Marco Carola', price: 5000, date: '18 de Mayo', place: 'La Fabrica', organizator: 'Meed', image: 'https://comingsoon.ae/wp-content/uploads/2019/11/IMG_0095.jpg' },
@@ -36,7 +41,22 @@ export class EventsPage implements OnInit {
     ]
   }
 
+  loadEvents() {
+    this.eventsService.getAllEvents().subscribe((response) => {
+      this.events = response.data;
+      this.loadingHelper.dismiss();
+    });
+  }
+
+  formatDate(date) {
+    return moment(date).format('DD-MM-YYYY');
+  }
+
   createNewEvent() {
     this.router.navigate(['/events/event']);
+  }
+
+  openEventDetail(event) {
+    this.router.navigate([`/events/event-detail/${event.id}`]);
   }
 }

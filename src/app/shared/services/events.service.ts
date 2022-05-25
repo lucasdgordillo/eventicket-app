@@ -65,4 +65,12 @@ export class EventsService {
   createEvent(event: Event): Observable<any> {
     return this.http.post<any>(`${environment.baseApiUrl}/events/create`, event);
   }
+
+  getAllEvents(): Observable<any> {
+    return this.http.get<any>(`${environment.baseApiUrl}/events`);
+  }
+
+  getEventById(eventId): Observable<any> {
+    return this.http.get<any>(`${environment.baseApiUrl}/events/${eventId}`);
+  }
 }
