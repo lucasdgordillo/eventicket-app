@@ -7,6 +7,7 @@ import { Storage } from '@capacitor/storage';
 import { UserResponse } from '../models/user-response.model';
 import jwt_decode from 'jwt-decode';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class AuthService {
   private user$ = new BehaviorSubject<User>(null);
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   register(newUser: User): Observable<any> {
@@ -95,5 +97,11 @@ export class AuthService {
         }
       })
     );
+  }
+
+  logout(): void {
+    this.user$.next(null);
+    Storage.remove({ key: 'token' });
+    this.router.navigateByUrl('/');
   }
 }
