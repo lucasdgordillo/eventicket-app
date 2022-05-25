@@ -1,4 +1,5 @@
 <div class="error-container" [class.is-hidden]="!isShown">
-  <div class="primary-content">{{ fieldLabel }}</div>
+  <div class="primary-content" *ngIf="customMessage === ''">{{ fieldLabel }}</div>
+  <div class="primary-content" *ngIf="customMessage !== ''"> Error </div>
   {{ message }}
 </div>

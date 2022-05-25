@@ -15,6 +15,7 @@ export class EventDetailPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private eventsService: EventsService
   ) {}
   
@@ -25,7 +26,6 @@ export class EventDetailPage implements OnInit {
 
   loadEventInformation() {
     this.eventsService.getEventById(this.eventId).subscribe((event) => {
-      console.log(event);
       this.eventData = event.data;
     });
   }
@@ -36,5 +36,9 @@ export class EventDetailPage implements OnInit {
 
   formatTime(time) {
     return time;
+  }
+
+  goToCheckout() {
+    this.router.navigate([`/events/event-checkout/${this.eventId}`]);
   }
 }

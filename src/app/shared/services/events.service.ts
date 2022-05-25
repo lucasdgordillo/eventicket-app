@@ -62,6 +62,10 @@ export class EventsService {
     return this.http.get<any>(`${environment.baseApiUrl}/rrpps`);
   }
 
+  getAllRrppsByProductor(productorId: number): Observable<any> {
+    return this.http.get<any>(`${environment.baseApiUrl}/rrpps/by-productor/${productorId}`);
+  }
+
   createEvent(event: Event): Observable<any> {
     return this.http.post<any>(`${environment.baseApiUrl}/events/create`, event);
   }

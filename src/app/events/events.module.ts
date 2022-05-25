@@ -10,6 +10,7 @@ import { EventPage } from './pages/event/event.page';
 import { PricesModal } from './pages/prices-modal/prices.modal';
 import { ItemPriceComponent } from './components/item-price/item-price.component';
 import { EventDetailPage } from './pages/event-detail/event-detail.page';
+import { EventCheckoutPage } from './pages/event-checkout/event-checkout.page';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { EventDetailPage } from './pages/event-detail/event-detail.page';
     EventPage,
     PricesModal,
     ItemPriceComponent,
-    EventDetailPage
+    EventDetailPage,
+    EventCheckoutPage
   ],
   providers: []
 })

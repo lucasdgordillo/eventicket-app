@@ -7,11 +7,14 @@ import { CardItemComponent } from './components/card-item/card-item.component';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 import { DatetimeModal } from './pages/datetime-modal/datetime.modal';
 import { ItemDatetimeComponent } from './components/item-datetime/item-datetime.component';
+import { PaymentModal } from './pages/payment-modal/payment.modal';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    ReactiveFormsModule
   ],
   declarations: [
     IntroPage,
@@ -19,13 +22,15 @@ import { ItemDatetimeComponent } from './components/item-datetime/item-datetime.
     CardItemComponent,
     ErrorDisplayComponent,
     DatetimeModal,
-    ItemDatetimeComponent
+    ItemDatetimeComponent,
+    PaymentModal
   ],
   exports: [
     CardItemComponent,
     ErrorDisplayComponent,
     DatetimeModal,
-    ItemDatetimeComponent
+    ItemDatetimeComponent,
+    PaymentModal
   ],
   entryComponents: [],
   providers: []

@@ -1,0 +1,73 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"> Cerrar </ion-button>
+    </ion-buttons>
+    <ion-title> Método de pago </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <form name="paymentMethodForm" [formGroup]="paymentMethodForm">
+        <ion-item-group mode="ios" class="ion-margin-top">
+          <ion-item class="rounded-item">
+            <ion-label position="stacked"> Nombre completo del titular: </ion-label>
+            <ion-input autocomplete="holder_full_name" formControlName="holder_full_name" type="text"> </ion-input>
+          </ion-item>
+          <ion-item class="rounded-item ion-margin-top">
+            <ion-label position="stacked"> DNI del titular: </ion-label>
+            <ion-input autocomplete="dniNumber" formControlName="dniNumber" type="text"> </ion-input>
+          </ion-item>
+          <ion-item class="rounded-item ion-margin-top">
+            <ion-label position="stacked"> Metodo de pago: </ion-label>
+            <ion-select interface="popover" formControlName="payment_type">
+              <ion-select-option value="visa_debit">VISA DEBITO</ion-select-option>
+              <ion-select-option value="visa_credit">VISA CREDITO</ion-select-option>
+              <ion-select-option value="mastercard_debit">MASTERCARD DEBITO</ion-select-option>
+              <ion-select-option value="mastercard_credit">MASTERCARD CREDITO</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="rounded-item ion-margin-top">
+            <ion-label position="stacked"> Numero de la tarjeta: </ion-label>
+            <ion-input autocomplete="card_number" formControlName="card_number" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="16"> </ion-input>
+          </ion-item>
+          <ion-row class="ion-margin-top">
+            <ion-col size="6" class="ion-no-padding expiration-day">
+              <ion-item class="rounded-item">
+                <ion-label position="stacked"> Mes/Año de expiracion: </ion-label>
+                <ion-input autocomplete="expiration_date" formControlName="expiration_date" type="text" placeholder="MM/YYYY"> </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding expiration-year">
+              <ion-item class="rounded-item">
+                <ion-label position="stacked"> CCV: </ion-label>
+                <ion-input autocomplete="ccv" formControlName="ccv" type="text" placeholder="XXX" maxlength="3"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-item class="rounded-item ion-margin-top">
+            <ion-label position="stacked"> Domicilio del titular: </ion-label>
+            <ion-input autocomplete="billing_address" formControlName="billing_address" type="text"> </ion-input>
+          </ion-item>
+        </ion-item-group>
+        <div class="container">
+          <error-display [isShown]="invalid(holder_full_name)" [fieldLabel]="'Nombre completo del titular'" [control]="holder_full_name"></error-display>
+          <error-display [isShown]="invalid(dniNumber)" [fieldLabel]="'DNI del titular'" [control]="dniNumber"></error-display>
+          <error-display [isShown]="invalid(payment_type)" [fieldLabel]="'Metodo de pago'" [control]="payment_type"></error-display>
+          <error-display [isShown]="invalid(card_number)" [fieldLabel]="'Numero de tarjeta'" [control]="card_number"></error-display>
+          <error-display [isShown]="invalid(expiration_date)" [fieldLabel]="'Fecha de expiracion'" [control]="expiration_date"></error-display>
+          <error-display [isShown]="invalid(ccv)" [fieldLabel]="'CCV'" [control]="ccv"></error-display>
+          <error-display [isShown]="invalid(billing_address)" [fieldLabel]="'Domicilio del titular'" [control]="billing_address"></error-display>
+        </div>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size="12">
+      <ion-button (click)="submitForm()" expand="block" color="primary"> Agregar metodo de pago </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

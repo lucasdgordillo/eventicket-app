@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { relativeTimeThreshold } from "moment";
 
 @Component({
   selector: 'error-display',
@@ -11,11 +12,14 @@ export class ErrorDisplayComponent implements OnChanges {
   @Input() fieldLabel: string;
   @Input() control: FormControl;
   @Input() isShown: boolean;
+  @Input() customMessage: string = '';
   public message = '';
 
   private messageOpts = {
     default: 'Error',
-    required: 'Es requerido'
+    required: 'Es requerido',
+    empty_cart: 'Debe seleccionar uno o mas tickets',
+    empty_payment: 'Debe agregar un método de pago',
   };
 
   public ngOnChanges() {
@@ -25,6 +29,11 @@ export class ErrorDisplayComponent implements OnChanges {
           this.message = this.messageOpts[propertyName] ? this.messageOpts[propertyName] : this.messageOpts.default; 
           return;
         }
+      }
+    } else {
+      if (this.customMessage !== '') {
+        this.message = this.messageOpts[this.customMessage];
+        return;
       }
     }
 
