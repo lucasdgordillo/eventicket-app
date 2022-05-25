@@ -1,0 +1,31 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title> Confirmación de compra </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-title class="ion-text-center"> Compra realizada con exito! </ion-card-title>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="ion-text-center"> Su codigo de confirmacion es: {{ purchaseCode }}</ion-label>
+      </ion-item>
+      <div class="container qr-container">
+        <ngx-qrcode 
+          [value]="purchaseCode" 
+          cssClass="qr-image" 
+          [width]="300"
+          [margin]="2"
+        ></ngx-qrcode>
+      </div>
+      <ion-item>
+        <ion-text class="ion-text-center"> Ya puede presentar el codigo QR en boleteria </ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="goToMyTickets()"> Volver a mis tickets </ion-button>
+  </ion-toolbar>
+</ion-footer>

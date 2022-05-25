@@ -12,7 +12,7 @@ import { PurchasesService } from 'src/app/tickets/services/purchases.service';
 import { Invoice, InvoiceDetail, PaymentInformation, PaymentType, Purchase } from '../../models/purchase.interface';
 
 @Component({
-  selector: 'even-checkout-page',
+  selector: 'event-checkout-page',
   templateUrl: 'event-checkout.page.html',
   styleUrls: ['./event-checkout.page.scss'],
 })
@@ -206,6 +206,7 @@ export class EventCheckoutPage implements OnInit {
 
     this.purchasesService.registerPurchase(purchaseData).subscribe((response) => {
       this.loadingHelper.dismiss();
+      this.router.navigate([`/tickets/purchase-confirmation/${response.purchaseCode}`]);
     }, (error) => {
       this.loadingHelper.dismiss();
       this.messageHelper.showAlertError('Hubo un error. Intente nuevamente en unos minutos');

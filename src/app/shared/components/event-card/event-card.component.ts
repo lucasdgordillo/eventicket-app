@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Role } from "src/app/auth/models/role.enum";
+import * as moment from 'moment';
 
 @Component({
   selector: 'event-card',
@@ -21,6 +21,10 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  formatDate(date) {
+    return moment(date).format('DD-MM-YYYY');
   }
 
   onCardClicked() {

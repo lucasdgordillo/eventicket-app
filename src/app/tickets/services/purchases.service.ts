@@ -15,4 +15,8 @@ export class PurchasesService {
   registerPurchase(purchaseData: Purchase): Observable<any> {
     return this.http.post<any>(`${environment.baseApiUrl}/purchases/create`, purchaseData);
   }
+
+  getAllPurchases() {
+    return this.http.get<any>(`${environment.baseApiUrl}/purchases`);
+  }
 }

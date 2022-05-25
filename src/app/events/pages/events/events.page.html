@@ -1,4 +1,3 @@
-
 <ion-header class="ion-no-border" [translucent]="true">
 	<ion-toolbar *ngIf="role === 'productor'">
 		<ion-title> Mis Eventos </ion-title>
@@ -24,7 +23,7 @@
 				<event-card
 					[eventId]="event.id"
 					[eventName]="event.title"
-					[eventDate]="formatDate(event.date)"
+					[eventDate]="event.date"
 					[eventImage]="event.imagePath"
 					[eventPlace]="event.place.name"
 					[eventOrganizator]="event.productor.displayName"

@@ -53,6 +53,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'tickets',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./tickets/tickets.module').then(m => m.TicketsModule)
+      }
+    ]
+  },
+  {
     path: 'profile',
     children: [
       {

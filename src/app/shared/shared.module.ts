@@ -9,6 +9,7 @@ import { DatetimeModal } from './pages/datetime-modal/datetime.modal';
 import { ItemDatetimeComponent } from './components/item-datetime/item-datetime.component';
 import { PaymentModal } from './pages/payment-modal/payment.modal';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EventCardComponent } from './components/event-card/event-card.component';
 
 @NgModule({
   imports: [
@@ -23,14 +24,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     ErrorDisplayComponent,
     DatetimeModal,
     ItemDatetimeComponent,
-    PaymentModal
+    PaymentModal,
+    EventCardComponent
   ],
   exports: [
     CardItemComponent,
     ErrorDisplayComponent,
     DatetimeModal,
     ItemDatetimeComponent,
-    PaymentModal
+    PaymentModal,
+    EventCardComponent
   ],
   entryComponents: [],
   providers: []

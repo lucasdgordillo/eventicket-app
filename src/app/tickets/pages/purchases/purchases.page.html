@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border" [translucent]="true">
+	<ion-toolbar>
+		<ion-title> Mis Tickets </ion-title>
+	</ion-toolbar>
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" mode="md" value="active">
+      <ion-segment-button value="active">
+        <ion-label>Vigentes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="inactive">
+        <ion-label>Utilizados</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+	<ion-grid class="ion-padding">
+		<ion-row *ngIf="currentSegment === 'active'">
+			<ion-col *ngFor="let purchase of activePurchases" size="12" class="ion-no-padding">
+				<event-card
+					[eventId]="purchase.purchase_code"
+					[eventName]="purchase.event.title"
+					[eventDate]="purchase.event.date"
+					[eventImage]="purchase.event.imagePath"
+					[eventPlace]="purchase.event.place.name"
+					[eventOrganizator]="purchase.productor.displayName"
+					(cardClickedEventAction)="openPurchaseConfirmation($event)"
+				>
+				</event-card>
+			</ion-col>
+		</ion-row>
+    <ion-row *ngIf="currentSegment === 'inactive'">
+			<ion-col *ngFor="let purchase of inactivePurchases" size="12" class="ion-no-padding">
+				<event-card
+					[eventId]="purchase.purchase_code"
+					[eventName]="purchase.event.title"
+					[eventDate]="purchase.event.date"
+					[eventImage]="purchase.event.imagePath"
+					[eventPlace]="purchase.event.place.name"
+					[eventOrganizator]="purchase.productor.displayName"
+					(cardClickedEventAction)="openPurchaseConfirmation($event)"
+				>
+				</event-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
