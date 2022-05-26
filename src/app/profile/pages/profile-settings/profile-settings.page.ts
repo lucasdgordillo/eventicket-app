@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -9,12 +10,18 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 
 export class ProfileSettingsPage implements OnInit {
+  role: Role = Role.USER;
+
   constructor(
     private router: Router,
     private authService: AuthService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.getUserRole().subscribe((role: Role) => {
+      this.role = role;
+    });
+  }
 
   public openPage(page) {
     this.router.navigate([page]);

@@ -19,4 +19,17 @@ export class PurchasesService {
   getAllPurchases() {
     return this.http.get<any>(`${environment.baseApiUrl}/purchases`);
   }
+
+  getAllScannedPurchases() {
+    return this.http.get<any>(`${environment.baseApiUrl}/purchases/scanned-purchases`);
+  }
+
+  verifyPurchaseCode(purchaseCode: string, date: string): Observable<any> {
+    const params = {
+      purchase_code: purchaseCode,
+      scanned_date: date
+    };
+
+    return this.http.post<any>(`${environment.baseApiUrl}/purchases/validate-purchase`, params);
+  }
 }

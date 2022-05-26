@@ -30,8 +30,10 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
   }
 
   loadCategories() {
+    this.loadingHelper.present();
     this.eventsService.getAllCategories().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
       this.categories = response.data;
+      this.loadingHelper.dismiss();
     });
   }
 

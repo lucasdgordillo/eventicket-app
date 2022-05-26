@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border" [translucent]="true">
+	<ion-toolbar>
+		<ion-title> Tickets Escaneados </ion-title>
+	</ion-toolbar>
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" mode="md" value="verified">
+      <ion-segment-button value="verified">
+        <ion-label>Verificados</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="rejected">
+        <ion-label>Rechazados</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+	<ion-grid class="ion-padding">
+		<ion-row *ngIf="currentSegment === 'verified'">
+			<ion-col size="12" class="ion-no-padding">
+				<ion-list>
+					<ion-item *ngFor="let ticket of verifiedTickets" lines="full">
+						<ion-avatar slot="start">
+							<ion-icon name="qr-code-outline" class="qr-icon"></ion-icon>
+						</ion-avatar>
+						<ion-label>
+							<h1>{{ ticket.event.title }}</h1>
+							<h3>{{ ticket.scanned_date }}</h3>
+							<p>Codigo: #{{ ticket.purchase_code }}</p>
+						</ion-label>
+						<ion-avatar slot="end">
+							<ion-icon name="information-circle-outline" class="info-icon"></ion-icon>
+						</ion-avatar>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+    <ion-row *ngIf="currentSegment === 'rejected'">
+			<ion-col *ngFor="let ticket of rejectedTickets" size="12" class="ion-no-padding">
+				
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

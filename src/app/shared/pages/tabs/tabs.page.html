@@ -1,13 +1,17 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="events">
+    <ion-tab-button *ngIf="role !== 'checker'" tab="events">
       <ion-icon name="calendar-outline"></ion-icon>
       <ion-label *ngIf="role === 'user' || role === 'admin'">Eventos</ion-label>
       <ion-label *ngIf="role === 'productor'">Mis eventos</ion-label>
-      <ion-label *ngIf="role === 'checker'">Eventos Escaneados</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="role === 'user'" tab="tickets">
+    <ion-tab-button *ngIf="role === 'checker'" (click)="redirectTo('/tabs/tickets/scanned-tickets')">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <ion-label>Tickets Escaneados</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="role === 'user'" tab="tickets" target="/tickets">
       <ion-icon name="ticket-outline"></ion-icon>
       <ion-label>Mis tickets</ion-label>
     </ion-tab-button>
@@ -15,6 +19,11 @@
     <ion-tab-button *ngIf="role === 'productor'" tab="reports">
       <ion-icon name="podium-outline"></ion-icon>
       <ion-label>Reportes</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="role === 'checker'" (click)="redirectTo('/tabs/tickets/scan-ticket')">
+      <ion-icon name="qr-code-outline"></ion-icon>
+      <ion-label>Escanear</ion-label>
     </ion-tab-button>
     
     <ion-tab-button *ngIf="role === 'user'" tab="profile">

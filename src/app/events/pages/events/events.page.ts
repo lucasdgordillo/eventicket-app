@@ -28,7 +28,6 @@ export class EventsPage implements OnInit {
     this.authService.getUserRole().subscribe((role: Role) => {
       this.role = role;
     });
-    this.role = Role.USER;
     this.loadEvents();
   }
 

@@ -29,8 +29,10 @@ export class EventRrppsPage implements OnInit, OnDestroy {
   }
 
   async loadRrpps() {
+    this.loadingHelper.present();
     this.eventsService.getAllRrpps().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
       this.rrpps = response.data;
+      this.loadingHelper.dismiss();
     });
   }
 

@@ -92,7 +92,6 @@ export class EventPage implements OnInit {
       this.router.navigate(['/tabs/events']);
     },
     (error) => {
-      console.log(error);
       this.loadingHelper.dismiss();
       this.messageHelper.showAlertError("Hubo un problema. Intente nuevamente");
     });

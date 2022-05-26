@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -10,17 +9,20 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage implements OnInit {
-  role: Role;
+  role: Role = Role.USER;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.authService.getUserRole().subscribe((role: Role) => {
       this.role = role;
     });
+  }
 
-    this.role = Role.USER;
+  redirectTo(url) {
+    this.router.navigate([url])
   }
 }

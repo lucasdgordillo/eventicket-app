@@ -5,15 +5,15 @@
 </ion-header>
 <ion-content fullscreen="true">
 	<ion-list class="ion-padding-top" lines="full">
-    <ion-item button="true" type="button" detail="false" (click)="openPage('profile/categories')">
+    <ion-item *ngIf="role === 'admin'" button="true" type="button" detail="false" (click)="openPage('profile/categories')">
       Categorías de eventos
       <ion-icon name="albums-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item button="true" type="button" detail="false" (click)="openPage('profile/places')">
+    <ion-item *ngIf="role === 'admin'" button="true" type="button" detail="false" (click)="openPage('profile/places')">
       Lugares de eventos
       <ion-icon name="locate-outline" slot="end"></ion-icon>
     </ion-item>
-    <ion-item button="true" type="button" detail="false" (click)="openPage('profile/rrpps')">
+    <ion-item *ngIf="role === 'productor'" button="true" type="button" detail="false" (click)="openPage('profile/rrpps')">
       RRPP Autorizados
       <ion-icon name="people-outline" slot="end"></ion-icon>
     </ion-item>

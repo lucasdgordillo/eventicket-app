@@ -29,8 +29,10 @@ export class EventPlacesPage implements OnInit, OnDestroy {
   }
 
   loadEventPlaces() {
+    this.loadingHelper.present();
     this.eventsService.getAllEventPlaces().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
       this.eventPlaces = response.data;
+      this.loadingHelper.dismiss();
     });
   }
 
