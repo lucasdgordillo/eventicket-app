@@ -1,0 +1,6 @@
+{
+	"appId": "org.eventicket.app",
+	"appName": "EvenTicket",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
