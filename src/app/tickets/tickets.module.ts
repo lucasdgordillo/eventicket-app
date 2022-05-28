@@ -7,8 +7,6 @@ import { TicketsRoutingModule } from './tickets-routing.module';
 import { PurchaseConfirmationPage } from './pages/purchase-confirmation/purchase-confirmation.page';
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { PurchasesPage } from './pages/purchases/purchases.page';
-import { ScannedTicketsPage } from './pages/scanned-tickets.page/scanned-tickets.page';
-import { ScanTicketPage } from './pages/scan-ticket/scan-ticket.page';
 
 @NgModule({
   imports: [
@@ -22,9 +20,7 @@ import { ScanTicketPage } from './pages/scan-ticket/scan-ticket.page';
   ],
   declarations: [ 
     PurchaseConfirmationPage,
-    PurchasesPage,
-    ScannedTicketsPage,
-    ScanTicketPage
+    PurchasesPage
   ],
   providers: []
 })

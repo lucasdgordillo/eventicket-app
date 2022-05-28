@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PurchaseStatus } from "src/app/events/models/purchase.interface";
-import { PurchasesService } from "../../services/purchases.service";
+import { PurchasesService } from "src/app/tickets/services/purchases.service";
 
 @Component({
   selector: 'scanned-tickets-page',

@@ -4,7 +4,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import * as moment from "moment";
 import { LoadingHelper } from "src/app/shared/helpers/loading.helper";
 import { MessageHelper } from "src/app/shared/helpers/message.helper";
-import { PurchasesService } from "../../services/purchases.service";
+import { PurchasesService } from "../../../tickets/services/purchases.service";
 
 @Component({
   selector: 'scan-ticket-page',
@@ -49,6 +49,6 @@ export class ScanTicketPage implements OnInit {
   }
 
   goToMyVerifyTickets() {
-    this.router.navigate(['/tabs/tickets/scanned-tickets']);
+    this.router.navigate(['/tabs/scanned-tickets']);
   }
 }
