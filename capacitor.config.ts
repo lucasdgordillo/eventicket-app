@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'evenTicket',
+  appId: 'org.eventicket.app',
+  appName: 'EvenTicket',
   webDir: 'www',
   bundledWebRuntime: false
 };
