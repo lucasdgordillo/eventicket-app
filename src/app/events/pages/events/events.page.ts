@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
@@ -12,9 +13,10 @@ import { EventsService } from 'src/app/shared/services/events.service';
   styleUrls: ['./events.page.scss'],
 })
 
-export class EventsPage implements OnInit {
+export class EventsPage implements OnInit, OnDestroy {
   role: Role = Role.USER;
   events = [];
+  private ngUnsubscribe = new Subject();
 
   constructor(
     private loadingHelper: LoadingHelper,
@@ -32,7 +34,7 @@ export class EventsPage implements OnInit {
   }
 
   loadEvents() {
-    this.eventsService.getAllEvents().subscribe((response) => {
+    this.eventsService.getAllEvents().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response) => {
       this.events = response.data;
       this.loadingHelper.dismiss();
     });
@@ -44,5 +46,10 @@ export class EventsPage implements OnInit {
 
   openEventDetail(event) {
     this.router.navigate([`/events/event-detail/${event.id}`]);
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

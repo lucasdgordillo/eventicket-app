@@ -32,6 +32,10 @@ export class PricesModal implements OnInit {
     this.prices.find((item) => { if (item.id == value.id) { return item[value.field] = value.value } });
   }
 
+  deletePriceItem(event) {
+    this.prices = this.prices.filter( item => item.id !== event.id );
+  }
+
   updatePrices() {
     this.dismiss({ values: this.prices });
   }

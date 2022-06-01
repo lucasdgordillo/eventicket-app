@@ -8,6 +8,7 @@ import { UserResponse } from '../models/user-response.model';
 import jwt_decode from 'jwt-decode';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { Role } from '../models/role.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -46,15 +47,19 @@ export class AuthService {
             value: response.token,
           });
           const decodedToken: UserResponse = jwt_decode(response.token);
+          Storage.set({
+            key: 'role',
+            value: decodedToken.user.role ? decodedToken.user.role : Role.USER
+          });
           this.user$.next(decodedToken.user);
         })
       );
   }
 
   getUserRole(): Observable<any> {
-    return this.user$.asObservable().pipe(
-      switchMap((user: User) => {
-        return of(user?.role);
+    return from(Storage.get({ key: 'role' })).pipe(
+      map((data: { value: string }) => {
+        return data.value;
       })
     );
   }
@@ -102,6 +107,7 @@ export class AuthService {
   logout(): void {
     this.user$.next(null);
     Storage.remove({ key: 'token' });
+    Storage.remove({ key: 'role' });
     this.router.navigateByUrl('/');
   }
 }

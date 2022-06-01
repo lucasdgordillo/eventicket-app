@@ -1,5 +1,5 @@
 <ion-row>
-  <ion-col size="8">
+  <ion-col size="6">
     <ion-row>
       <ion-col size="12">
         <ion-item class="rounded-item">
@@ -8,14 +8,15 @@
       </ion-col>
     </ion-row>
   </ion-col>
-  <ion-col size="4">
+  <ion-col size="6">
     <ion-row class="ion-no">
       <ion-col size="2">
         <span class="price-symbol">$</span>
       </ion-col>
       <ion-col size="10">
         <ion-item class="rounded-item">
-          <ion-input inputmode="numeric" type="number" placeholder="Precio" max="9999" maxlength="4" value="{{ price }}" (ionChange)="changePriceValue($event)" ></ion-input>  
+          <ion-input type="number" placeholder="Precio" max="99999" min="0" maxlength="4" value="{{ price }}" (ionChange)="changePriceValue($event)" ></ion-input>
+          <ion-icon name="trash-outline" color="danger" slot="end" (click)="deleteItemAction()"></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>

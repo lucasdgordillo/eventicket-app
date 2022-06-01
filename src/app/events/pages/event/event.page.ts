@@ -86,6 +86,11 @@ export class EventPage implements OnInit {
 }
 
   createEvent() {
+    const releaseSellDateTimeFormatted = moment(this.eventForm.get('releaseSellDateTime').value).toISOString();
+    const endSellDateTimeFormatted = moment(this.eventForm.get('endSellDateTime').value).toISOString();
+    this.eventForm.get('releaseSellDateTime').setValue(releaseSellDateTimeFormatted);
+    this.eventForm.get('endSellDateTime').setValue(endSellDateTimeFormatted);
+
     this.eventsService.createEvent(this.eventForm.value).subscribe((response) => {
       this.loadingHelper.dismiss();
       this.messageHelper.presentToast('Evento creado con exito!', 2500);

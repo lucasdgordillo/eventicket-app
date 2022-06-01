@@ -11,6 +11,7 @@ export class ItemPriceComponent {
   @Input() name: string = '';
   @Input() price: number = 0;
   @Output() itemUpdateEvent = new EventEmitter();
+  @Output() itemDeleteEvent = new EventEmitter();
 
   constructor() {}
 
@@ -24,5 +25,9 @@ export class ItemPriceComponent {
 
   updateItemAction(value, field) {
     this.itemUpdateEvent.emit({ id: this.id, value: value, field: field });
+  }
+
+  deleteItemAction() {
+    this.itemDeleteEvent.emit({ id: this.id });
   }
 }
