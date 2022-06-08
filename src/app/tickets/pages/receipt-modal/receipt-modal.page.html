@@ -1,0 +1,87 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"> Cerrar </ion-button>
+    </ion-buttons>
+    <ion-title> Recibo de compra </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="receipt-pdf" class="invoice-box">
+    <table>
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <!-- <td class="title">
+                <img src="./images/logo.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+              </td> -->
+              <td>
+                Código de recibo: #{{ receiptData.purchase_code }}<br/>
+                Fecha de creación: {{ getFormatedDate(receiptData.createdAt, 'DD-MM-YYYY') }}<br/>
+                Fecha de pago: {{ getFormatedDate(receiptData.invoice.payment_date, 'DD-MM-YYYY') }}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="information">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                Datos de la productora:<br />
+                {{ receiptData.productor.displayName }}<br />
+                {{ receiptData.productor.email }}<br />
+                {{ receiptData.productor.phoneNumber }}<br />
+                {{ receiptData.productor.province.name }}, Argentina
+              </td>
+              <td>
+                Datos del cliente:<br />
+                {{ receiptData.user.firstName }} {{ receiptData.user.lastName }}<br />
+                {{ receiptData.user.email }}<br />
+                {{ receiptData.user.phoneNumber }}<br />
+                {{ receiptData.user.dniNumber }}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="heading">
+        <td>Forma de Pago</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="details">
+        <td>VISA</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="heading">
+        <td>Item</td>
+        <td>Cant</td>
+        <td>Precio</td>
+      </tr>
+      <tr class="item" *ngFor="let item of receiptData.invoice.invoice_details">
+        <td> {{ item.name }} </td>
+        <td> {{ item.quantity }} </td>
+        <td> ${{ item.unit_price }} </td>
+      </tr>
+      <tr class="item last">
+        <td>Service Charge</td>
+        <td>1</td>
+        <td> ${{ getServiceChargeValue(receiptData.invoice.total_without_fee, receiptData.invoice.total_with_fee) }}</td>
+      </tr>
+      <tr class="total">
+        <td></td>
+        <td>Total:</td>
+        <td> ${{ receiptData.invoice.total_with_fee }}</td>
+      </tr>
+    </table>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block" color="success" (click)="downloadPDF()"> Descargar </ion-button>
+  </ion-toolbar>
+</ion-footer>

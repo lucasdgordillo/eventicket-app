@@ -7,6 +7,7 @@ import { TicketsRoutingModule } from './tickets-routing.module';
 import { PurchaseConfirmationPage } from './pages/purchase-confirmation/purchase-confirmation.page';
 import { NgxQRCodeModule } from "ngx-qrcode2";
 import { PurchasesPage } from './pages/purchases/purchases.page';
+import { ReceiptModalPage } from './pages/receipt-modal/receipt-modal.page';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { PurchasesPage } from './pages/purchases/purchases.page';
   ],
   declarations: [ 
     PurchaseConfirmationPage,
-    PurchasesPage
+    PurchasesPage,
+    ReceiptModalPage
   ],
   providers: []
 })

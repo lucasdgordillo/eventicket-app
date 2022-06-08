@@ -5,6 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
 import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -35,5 +36,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     );
   }
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 }

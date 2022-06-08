@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { AuthInterceptorService } from './auth/services/auth-interceptor.service';
+import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, NgxQRCodeModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, HttpClientModule],
   providers: [
+    PDFGenerator,
     BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {

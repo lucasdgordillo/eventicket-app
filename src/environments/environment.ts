@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseApiUrl: 'http://localhost:3000/api'
+  // baseApiUrl: 'https://eventicket-service.herokuapp.com/api'
 };
 
 /*

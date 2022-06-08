@@ -1,5 +1,8 @@
 <ion-header translucent>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="''"></ion-back-button>
+    </ion-buttons>
     <ion-title> Confirmación de compra </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -23,6 +26,11 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+  <ion-row class="ion-text-center">
+    <ion-col size="12" class="ion-padding">
+      <ion-button class="receipt-button" expand="block" fill="outline" (click)="openReceipt()"> <ion-icon name="document-text-outline" slot="start"></ion-icon> Ver/Descargar recibo </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar>

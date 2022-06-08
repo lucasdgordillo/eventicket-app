@@ -20,6 +20,10 @@ export class PurchasesService {
     return this.http.get<any>(`${environment.baseApiUrl}/purchases`);
   }
 
+  getPurchaseByCode(purchaseCode) {
+    return this.http.get<any>(`${environment.baseApiUrl}/purchases/${purchaseCode}`);
+  }
+
   getAllScannedPurchases() {
     return this.http.get<any>(`${environment.baseApiUrl}/purchases/scanned-purchases`);
   }
