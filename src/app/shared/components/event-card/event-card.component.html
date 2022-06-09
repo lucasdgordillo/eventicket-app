@@ -1,5 +1,5 @@
 <ion-card button="true" (click)="onCardClicked()">
-  <img [src]="eventImage ? eventImage : defaultImage" />
+  <img [src]="getEventImageUrl()" />
   <ion-card-header>
     <ion-row>
       <ion-col size="8" class="ion-no-padding main-title">

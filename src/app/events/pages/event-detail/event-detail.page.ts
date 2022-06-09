@@ -5,6 +5,7 @@ import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'even-datail-page',
@@ -55,5 +56,9 @@ export class EventDetailPage implements OnInit {
 
   editEvent() {
     
+  }
+
+  getEventImageUrl() {
+    return this.eventData.imagePath !== '' ? `${environment.imagesUrl}${this.eventData.imagePath}` : this.defaultImage;
   }
 }

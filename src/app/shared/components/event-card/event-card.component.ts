@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import * as moment from 'moment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'event-card',
@@ -25,6 +26,10 @@ export class EventCardComponent implements OnInit {
 
   formatDate(date) {
     return moment(date).format('DD-MM-YYYY');
+  }
+
+  getEventImageUrl() {
+    return this.eventImage !== '' ? `${environment.imagesUrl}${this.eventImage}` : this.defaultImage;
   }
 
   onCardClicked() {

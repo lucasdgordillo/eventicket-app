@@ -9,6 +9,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 import { LoadingHelper } from "src/app/shared/helpers/loading.helper";
 import { Router } from "@angular/router";
 import { MessageHelper } from "src/app/shared/helpers/message.helper";
+import { ImagesService } from "src/app/shared/services/images.service";
 
 @Component({
   selector: 'event-page',
@@ -22,6 +23,7 @@ export class EventPage implements OnInit {
   prices = [];
   productorId;
   showPricesError: boolean = false;
+  imagePath: string = '';
   
   public eventForm: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -47,7 +49,8 @@ export class EventPage implements OnInit {
     private alertController: AlertController,
     private loadingHelper: LoadingHelper,
     private router: Router,
-    private messageHelper: MessageHelper
+    private messageHelper: MessageHelper,
+    private imagesService: ImagesService
   ) {}
 
   ngOnInit() {
@@ -76,20 +79,25 @@ export class EventPage implements OnInit {
 
   async selectImage() {
     const image = await Camera.getPhoto({
-        quality: 100,
-        allowEditing: false,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Photos // Camera, Photos or Prompt!
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Photos
     });
- 
-    console.log(image);
-}
+
+    this.imagesService.uploadImage(image).subscribe((response) => {
+      this.imagePath = response.imagePath ? response.imagePath : '';
+    }, error => {
+      console.log(error);
+    });
+  }
 
   createEvent() {
     const releaseSellDateTimeFormatted = moment(this.eventForm.get('releaseSellDateTime').value).toISOString();
     const endSellDateTimeFormatted = moment(this.eventForm.get('endSellDateTime').value).toISOString();
     this.eventForm.get('releaseSellDateTime').setValue(releaseSellDateTimeFormatted);
     this.eventForm.get('endSellDateTime').setValue(endSellDateTimeFormatted);
+    this.eventForm.get('imagePath').setValue(this.imagePath);
 
     this.eventsService.createEvent(this.eventForm.value).subscribe((response) => {
       this.loadingHelper.dismiss();
