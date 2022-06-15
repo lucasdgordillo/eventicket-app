@@ -75,6 +75,6 @@
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-button *ngIf="role === 'user'" expand="block" (click)="goToCheckout()"> Comprar tickets </ion-button>
-    <ion-button *ngIf="role === 'productor'" expand="block" (click)="editEvent()"> Editar evento </ion-button>
+    <ion-button *ngIf="role === 'productor'" expand="block" (click)="cancelEvent()" color="danger"> Cancelar evento </ion-button>
   </ion-toolbar>
 </ion-footer>

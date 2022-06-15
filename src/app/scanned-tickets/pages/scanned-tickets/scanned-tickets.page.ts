@@ -23,6 +23,9 @@ export class ScannedTicketsPage implements OnInit {
 
   loadTickets() {
     this.purchasesService.getAllScannedPurchases().subscribe( (scannedPurchases) => {
+      if (!scannedPurchases.data) {
+        return;
+      }
       const scannedPurchasesArray = scannedPurchases.data;
       scannedPurchasesArray.forEach(scannedPurchase => {
         if (scannedPurchase.purchase.status === PurchaseStatus.VERIFIED) {

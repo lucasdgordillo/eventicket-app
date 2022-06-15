@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { MessageHelper } from 'src/app/shared/helpers/message.helper';
-import { CustomValidators } from 'src/app/shared/validators/custom-validators';
 import { AuthService } from '../../services/auth.service';
+import { Role } from '../../models/role.enum';
 
 @Component({
   selector: 'login-page',
@@ -34,7 +34,11 @@ export class LoginPage {
 
       this.authService.login(email, password).subscribe((user) => {
         this.loadingHelper.dismiss();
-        this.router.navigate(['/tabs/events']);
+        if (user.role !== Role.CHECKER) {
+          this.router.navigate(['/tabs/events']);
+        } else {
+          this.router.navigate(['/tabs/scanned-tickets']);
+        }
       },
       (error) => {
         this.loadingHelper.dismiss();

@@ -2,8 +2,11 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button [text]="''"></ion-back-button>
+      <ion-button *ngIf="modalMode" (click)="dismiss()"> Cerrar </ion-button>
     </ion-buttons>
-    <ion-title> Crear una nueva cuenta </ion-title>
+    <ion-title *ngIf="!modalMode" > Crear una nueva cuenta </ion-title>
+    <ion-title *ngIf="modalMode && !userData" > Crear usuario </ion-title>
+    <ion-title *ngIf="modalMode && userData" > Informacion de usuario </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -12,32 +15,44 @@
       <ion-col size="12" size-md="6" size-lg="5" size-xl="3" offset-xl="1">
         <form name="registerForm" [formGroup]="registerForm">
           <ion-item-group mode="md" class="ion-margin-top">
-            <ion-item>
+            <ion-item class="rounded-item">
               <ion-icon class="ion-align-self-center" name="clipboard-outline" slot="start"></ion-icon>
               <ion-label position="floating"> Nombre: </ion-label>
-              <ion-input autocomplete="firstName" formControlName="firstName" type="text"> </ion-input>
+              <ion-input autocomplete="firstName" formControlName="firstName" type="text" [disabled]="userData"> </ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="rounded-item">
               <ion-icon class="ion-align-self-center" name="clipboard-outline" slot="start"></ion-icon>
               <ion-label position="floating"> Apellido: </ion-label>
-              <ion-input autocomplete="lastName" formControlName="lastName" type="text"> </ion-input>
+              <ion-input autocomplete="lastName" formControlName="lastName" type="text" [disabled]="userData"> </ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="rounded-item" *ngIf="userRol === 'admin'">
+              <ion-icon class="ion-align-self-center" name="clipboard-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Nombre de la productora: </ion-label>
+              <ion-input autocomplete="displayName" formControlName="displayName" type="text" [disabled]="userData"> </ion-input>
+            </ion-item>
+            <ion-item class="rounded-item">
               <ion-icon class="ion-align-self-center" name="person-outline" slot="start"></ion-icon>
               <ion-label position="floating"> DNI: </ion-label>
-              <ion-input autocomplete="dniNumber" formControlName="dniNumber" type="text"> </ion-input>
+              <ion-input autocomplete="dniNumber" formControlName="dniNumber" type="text" [disabled]="userData"> </ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="rounded-item">
               <ion-icon class="ion-align-self-center" name="call-outline" slot="start"></ion-icon>
               <ion-label position="floating"> Celular: </ion-label>
-              <ion-input autocomplete="phoneNumber" formControlName="phoneNumber" type="text"> </ion-input>
+              <ion-input autocomplete="phoneNumber" formControlName="phoneNumber" type="text" [disabled]="userData"> </ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="rounded-item">
+              <ion-icon class="ion-align-self-center" name="location-outline" slot="start"></ion-icon>
+              <ion-label position="floating"> Provincia: </ion-label>
+              <ion-select formControlName="province" [disabled]="userData">
+                <ion-select-option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item class="rounded-item">
               <ion-icon class="ion-align-self-center" name="mail-outline" slot="start"></ion-icon>
               <ion-label position="floating"> Email: </ion-label>
-              <ion-input autocomplete="email" formControlName="email" type="email"> </ion-input>
+              <ion-input autocomplete="email" formControlName="email" type="email" [disabled]="userData"> </ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item class="rounded-item" *ngIf="!userData">
               <ion-icon class="ion-align-self-center" name="lock-closed-outline" slot="start"></ion-icon>
               <ion-label position="floating"> Contraseña: </ion-label>
               <ion-input autocomplete="password" formControlName="password" type="password"> </ion-input>
@@ -48,8 +63,17 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer class="ion-no-border ion-hide-lg-up">
+<ion-footer *ngIf="!modalMode" class="ion-no-border ion-hide-lg-up">
   <ion-toolbar class="ion-no-padding">
     <ion-button (click)="createAccount()" expand="full" shape="round" color="primary"> Crear cuenta </ion-button>
+  </ion-toolbar>
+</ion-footer>
+<ion-footer *ngIf="modalMode" class="ion-no-border ion-hide-lg-up">
+  <ion-toolbar class="ion-no-padding">
+    <ion-row *ngIf="!userData">
+      <ion-col size="12">
+        <ion-button (click)="createAction()" expand="full" shape="round" color="primary"> Crear </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>

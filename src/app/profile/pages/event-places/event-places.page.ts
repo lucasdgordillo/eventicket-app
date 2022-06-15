@@ -49,6 +49,7 @@ export class EventPlacesPage implements OnInit, OnDestroy {
     const { data } = await modal.onWillDismiss();
 
     if (data) {
+      window.location.reload();
       if (data.action === 'create') {
         this.loadingHelper.present();
         this.eventsService.createEventPlace(data.value).subscribe(() => {

@@ -102,7 +102,7 @@ export class EventPage implements OnInit {
     this.eventsService.createEvent(this.eventForm.value).subscribe((response) => {
       this.loadingHelper.dismiss();
       this.messageHelper.presentToast('Evento creado con exito!', 2500);
-      this.router.navigate(['/tabs/events']);
+      this.router.navigate(['/tabs/events', { reload: true }]);
     },
     (error) => {
       this.loadingHelper.dismiss();

@@ -32,7 +32,7 @@ export class AuthService {
     ).pipe(take(1));
   }
 
-  login(email: string, password: string): Observable<{ token: string }> {
+  login(email: string, password: string): Observable<any> {
     return this.http
       .post<{ token: string }>(
         `${environment.baseApiUrl}/auth/login`,

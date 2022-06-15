@@ -32,6 +32,16 @@ const routes: Routes = [
       ]
     },
     {
+      path: 'scanned-tickets',
+      children: [
+        {
+          path: '',
+          loadChildren: () =>
+            import('./scanned-tickets/scanned-tickets.module').then(m => m.ScannedTicketsModule)
+        }
+      ]
+    },
+    {
       path: 'profile',
       children: [
         {

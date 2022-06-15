@@ -50,6 +50,7 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     const { data } = await modal.onWillDismiss();
 
     if (data) {
+      window.location.reload();
       if (data.action === 'create') {
         this.loadingHelper.present();
         this.eventsService.createCategory({ name: data.value }).subscribe(() => {

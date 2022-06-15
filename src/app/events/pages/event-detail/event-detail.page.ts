@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import * as moment from 'moment';
 import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
+import { MessageHelper } from 'src/app/shared/helpers/message.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +25,9 @@ export class EventDetailPage implements OnInit {
     private router: Router,
     private eventsService: EventsService,
     private loadingHelper: LoadingHelper,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertController: AlertController,
+    private messageHelper: MessageHelper
   ) {}
   
   ngOnInit() {
@@ -56,6 +60,40 @@ export class EventDetailPage implements OnInit {
 
   editEvent() {
     
+  }
+
+  async cancelEvent() {
+    const alert = await this.alertController.create({
+      header: 'Cancelar evento',
+      subHeader: 'Esta usted seguro de cancelar este evento?',
+      message: 'Tenga en cuenta que luego de cancelar debera comunicarse al 0800 555 3456 para solicitar la devolucion de tickets',
+      buttons: [
+        {
+          text: 'Volver',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Confirmar',
+          handler: () => { 
+            this.loadingHelper.present();
+            this.deleteEvent(); 
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  deleteEvent() {
+    this.loadingHelper.present();
+    this.eventsService.deleteEvent(this.eventId).subscribe(() => {
+      this.messageHelper.presentToast('Evento cancelado con exito!');
+      this.loadingHelper.dismiss();
+      this.router.navigate(['/events']);
+    }, (error) => {
+      this.loadingHelper.dismiss();
+    });
   }
 
   getEventImageUrl() {

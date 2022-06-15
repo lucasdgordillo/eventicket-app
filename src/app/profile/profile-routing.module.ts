@@ -4,6 +4,7 @@ import { EventCategoriesPage } from './pages/event-categories/event-categories.p
 import { EventPlacesPage } from './pages/event-places/event-places.page';
 import { EventRrppsPage } from './pages/event-rrrps/event-rrpps.page';
 import { ProfileSettingsPage } from './pages/profile-settings/profile-settings.page';
+import { UsersPage } from './pages/users/users.page';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'rrpps',
     component: EventRrppsPage
+  },
+  {
+    path: 'users',
+    component: UsersPage
   },
 ];
 @NgModule({

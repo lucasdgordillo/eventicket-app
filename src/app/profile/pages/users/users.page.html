@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="userRol === 'admin'"> Usuarios Productores </ion-title>
+    <ion-title *ngIf="userRol === 'productor'"> Usuarios Verificadores </ion-title>
+    <ion-buttons slot="end">
+      <ion-icon class="add-button" (click)="openRegisterUserModal()" name="add-circle-outline" color="primary"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="light-gray-background">
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding" *ngFor="let user of users">
+      <card-item-component
+        [id]="user.id"
+        [name]="getFullName(user)"
+        (editEventAction)="editUser($event)"
+      ></card-item-component>
+    </ion-col>
+  </ion-row>
+</ion-content>

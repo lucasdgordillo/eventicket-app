@@ -19,4 +19,4 @@ import { ScannedTicketsRoutingModule } from "./scanned-tickets-routing.module";
   declarations: [ ScannedTicketsPage, ScanTicketPage ],
   providers: []
 })
-export class ReportsModule {}
+export class ScannedTicketsModule {}

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Role } from 'src/app/auth/models/role.enum';
@@ -13,19 +13,22 @@ import { EventsService } from 'src/app/shared/services/events.service';
   styleUrls: ['./events.page.scss'],
 })
 
-export class EventsPage implements OnInit, OnDestroy {
+export class EventsPage implements OnInit {
   role: Role = Role.USER;
   events = [];
+  params: any;
   private ngUnsubscribe = new Subject();
 
   constructor(
     private loadingHelper: LoadingHelper,
     private authService: AuthService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private eventsService: EventsService
   ) { }
 
   ngOnInit() {
+    this.params = this.activatedRoute.snapshot.params;
     this.loadingHelper.present();
     this.authService.getUserRole().subscribe((role: Role) => {
       this.role = role;
@@ -34,7 +37,7 @@ export class EventsPage implements OnInit, OnDestroy {
   }
 
   loadEvents() {
-    this.eventsService.getAllEvents().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response) => {
+    this.eventsService.getAllEvents().subscribe((response) => {
       this.events = response.data;
       this.loadingHelper.dismiss();
     });
@@ -48,8 +51,8 @@ export class EventsPage implements OnInit, OnDestroy {
     this.router.navigate([`/events/event-detail/${event.id}`]);
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
+  // ngOnDestroy() {
+  //   this.ngUnsubscribe.next();
+  //   this.ngUnsubscribe.complete();
+  // }
 }
