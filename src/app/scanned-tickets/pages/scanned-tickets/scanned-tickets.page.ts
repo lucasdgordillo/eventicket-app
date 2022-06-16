@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { PurchaseStatus } from "src/app/events/models/purchase.interface";
 import { PurchasesService } from "src/app/tickets/services/purchases.service";
 
@@ -14,7 +15,8 @@ export class ScannedTicketsPage implements OnInit {
   rejectedTickets = [];
 
   constructor(
-    private purchasesService: PurchasesService
+    private purchasesService: PurchasesService,
+    private router: Router
   ) {}
   
   ngOnInit() {
@@ -43,5 +45,9 @@ export class ScannedTicketsPage implements OnInit {
     } else {
       this.currentSegment = 'rejected';
     }
+  }
+
+  scanTicket() {
+    this.router.navigate(['/scanned-tickets/scan-ticket']);
   }
 }

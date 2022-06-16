@@ -101,6 +101,16 @@ const routes: Routes = [
           import('./reports/reports.module').then(m => m.ReportsModule)
       }
     ]
+  },
+  {
+    path: 'scanned-tickets',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./scanned-tickets/scanned-tickets.module').then(m => m.ScannedTicketsModule)
+      }
+    ]
   }
 ];
 @NgModule({

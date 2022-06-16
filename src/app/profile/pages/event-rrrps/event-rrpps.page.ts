@@ -28,6 +28,14 @@ export class EventRrppsPage implements OnInit, OnDestroy {
     this.loadRrpps();
   }
 
+  doRefresh(event) {
+    this.rrpps = [];
+    this.loadRrpps();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1);
+  }
+
   async loadRrpps() {
     this.loadingHelper.present();
     this.eventsService.getAllRrpps().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
@@ -49,7 +57,6 @@ export class EventRrppsPage implements OnInit, OnDestroy {
     const { data } = await modal.onWillDismiss();
 
     if (data) {
-      // window.location.reload();
       if (data.action === 'create') {
         this.loadingHelper.present();
         this.eventsService.createRrpp(data.value).subscribe(() => {

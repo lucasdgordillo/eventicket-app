@@ -10,6 +10,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="light-gray-background">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-row class="ion-padding-top">
     <ion-col size="12" class="ion-no-padding" *ngFor="let place of eventPlaces">
       <card-item-component

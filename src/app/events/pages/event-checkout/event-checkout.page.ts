@@ -47,15 +47,15 @@ export class EventCheckoutPage implements OnInit {
   ngOnInit() {
     this.eventId = this.activatedRoute.snapshot.params.eventId;
     this.loadEventInformation();
-    this.paymentInfo = { 
-      holder_full_name: 'Lucas Gordillo',
-      billing_address: 'Obispo carranza 2082',
-      card_number: '4444444444444444',
-      expiration_date: '12/2023',
-      payment_type: PaymentType.VISA_DEBIT,
-      ccv: 333,
-      dniNumber: '40247328'
-    }
+    // this.paymentInfo = { 
+    //   holder_full_name: 'Lucas Gordillo',
+    //   billing_address: 'Obispo carranza 2082',
+    //   card_number: '4444444444444444',
+    //   expiration_date: '12/2023',
+    //   payment_type: PaymentType.VISA_DEBIT,
+    //   ccv: 333,
+    //   dniNumber: '40247328'
+    // }
   }
 
   loadEventInformation() {

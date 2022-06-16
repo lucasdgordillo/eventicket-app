@@ -39,6 +39,14 @@ export class UsersPage implements OnInit, OnDestroy {
     this.loadUsers();
   }
 
+  doRefresh(event) {
+    this.users = [];
+    this.loadUsers();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1);
+  }
+
   async loadUsers() {
     this.loadingHelper.present();
     this.usersService.getUsersByCreator().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {

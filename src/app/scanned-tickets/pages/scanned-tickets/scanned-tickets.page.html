@@ -1,6 +1,9 @@
 <ion-header class="ion-no-border" [translucent]="true">
 	<ion-toolbar>
 		<ion-title class="ion-text-center"> Tickets Escaneados </ion-title>
+		<ion-buttons slot="end">
+			<ion-icon class="add-button" (click)="scanTicket()" name="add-circle-outline" color="primary"></ion-icon>
+		</ion-buttons>
 	</ion-toolbar>
   <ion-toolbar>
     <ion-segment (ionChange)="segmentChanged($event)" mode="md" value="verified">

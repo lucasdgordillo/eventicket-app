@@ -29,6 +29,14 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     this.loadCategories();
   }
 
+  doRefresh(event) {
+    this.categories = [];
+    this.loadCategories();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1);
+  }
+
   loadCategories() {
     this.loadingHelper.present();
     this.eventsService.getAllCategories().pipe(takeUntil(this.ngUnsubscribe)).subscribe((response: any) => {
@@ -50,7 +58,6 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
     const { data } = await modal.onWillDismiss();
 
     if (data) {
-      window.location.reload();
       if (data.action === 'create') {
         this.loadingHelper.present();
         this.eventsService.createCategory({ name: data.value }).subscribe(() => {
