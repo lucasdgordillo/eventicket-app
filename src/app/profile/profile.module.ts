@@ -12,6 +12,8 @@ import { EventRrppsPage } from './pages/event-rrrps/event-rrpps.page';
 import { EventPlaceModalPage } from './pages/event-place-modal/event-place-modal.page';
 import { RrppModalPage } from './pages/rrpp-modal/rrpp-modal.page';
 import { UsersPage } from './pages/users/users.page';
+import { TermsAndConditionsPage } from './pages/terms-and-conditions/terms-and-conditions.page';
+import { FaqPage } from './pages/faq/faq.page';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { UsersPage } from './pages/users/users.page';
     EventPlaceModalPage,
     EventRrppsPage,
     RrppModalPage,
-    UsersPage
+    UsersPage,
+    TermsAndConditionsPage,
+    FaqPage
   ],
   providers: []
 })
