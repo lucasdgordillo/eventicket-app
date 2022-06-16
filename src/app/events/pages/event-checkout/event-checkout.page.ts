@@ -206,7 +206,7 @@ export class EventCheckoutPage implements OnInit {
 
     this.purchasesService.registerPurchase(purchaseData).subscribe((response) => {
       this.loadingHelper.dismiss();
-      this.router.navigate([`/tickets/purchase-confirmation/${response.purchaseCode}`]);
+      this.router.navigate([`/tickets/purchase-confirmation/${response.purchaseCode}`, { fromCheckout: true }]);
     }, (error) => {
       this.loadingHelper.dismiss();
       this.messageHelper.showAlertError('Hubo un error. Intente nuevamente en unos minutos');

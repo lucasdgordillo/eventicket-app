@@ -5,6 +5,7 @@
       <ion-col size="8" class="ion-no-padding main-title">
         <ion-card-subtitle> {{ formatDate(eventDate) }} </ion-card-subtitle>
         <ion-card-title> {{ eventName }} </ion-card-title>
+        <ion-card-subtitle color="secondary" *ngIf="eventPurchasesQuantity"> Cant: {{ eventPurchasesQuantity }} </ion-card-subtitle>
       </ion-col>
       <ion-col size="4" class="ion-no-padding ion-text-right">
         <ion-row>

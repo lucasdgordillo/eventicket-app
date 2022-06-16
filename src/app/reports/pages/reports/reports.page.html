@@ -1,31 +1,24 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title> Nuevo Evento </ion-title>
+    <ion-title class="ion-text-center"> Listado de Reportes </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <ion-card>
-    <ion-card-header>
-      Doughnut Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #doughnutCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      Bar Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      Line Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid class="ion-padding">
+    <ion-row class="ion-text-center">
+      <ion-col size="12" class="ion-padding-top">
+        <ion-button expand="block" color="secondary" (click)="goToReportPage('/reports/rrpps-report')"> Eficiencia RRPPs </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <ion-col size="12" class="ion-padding-top">
+        <ion-button expand="block" color="secondary" (click)="goToReportPage('/reports/ticket-sales-report')"> ventas de tickets </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <ion-col size="12" class="ion-padding-top">
+        <ion-button expand="block" color="secondary" (click)="goToReportPage('/reports/ticket-sales-by-province-report')"> Ventas segmentadas por provincia </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

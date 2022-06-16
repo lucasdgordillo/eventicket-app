@@ -74,6 +74,9 @@ export class RegisterPage implements OnInit {
       this.touchForms();
     } else {
       this.loadingHelper.present();
+      this.registerForm.removeControl('createdBy');
+      this.registerForm.removeControl('displayName');
+      this.registerForm.get('role').setValue(Role.USER);
       this.authService.register(this.registerForm.value).subscribe(() => {
         this.loadingHelper.dismiss();
         this.messageHelper.presentToast('Usuario creado con exito!', 2500);

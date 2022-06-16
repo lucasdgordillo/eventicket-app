@@ -1,9 +1,9 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button [text]="''"></ion-back-button>
+    <ion-buttons slot="start" *ngIf="!fromCheckout">
+      <ion-back-button [text]="''" defaultHref="/tabs/tickets"></ion-back-button>
     </ion-buttons>
-    <ion-title> Confirmación de compra </ion-title>
+    <ion-title class="ion-text-center"> Confirmación de compra </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>

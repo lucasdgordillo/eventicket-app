@@ -1,0 +1,26 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"> Reporte de RRPPs </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid class="ion-padding">
+    <ion-row class="ion-text-left">
+      <ion-col size="12">
+        <p> Con este reporte podras ver las ganancias que generaron tus empleados tipo RRPPs sobre tus eventos. Por defecto te trae el total recaudado de todos los eventos, pero puedes filtrar por evento como opcional </p>
+      </ion-col>
+    </ion-row>
+    <report-filter-component [events]="events" (filterEvent)="filterAction($event)"></report-filter-component>
+  </ion-grid>
+  <ion-card>
+    <ion-card-header>
+      Reporte de eficiencia de venta de los RRPPs
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

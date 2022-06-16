@@ -3,8 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="userRol === 'admin'"> Usuarios Productores </ion-title>
-    <ion-title *ngIf="userRol === 'productor'"> Usuarios Verificadores </ion-title>
+    <ion-title *ngIf="userRol === 'admin'" class="ion-text-center"> Usuarios Productores </ion-title>
+    <ion-title *ngIf="userRol === 'productor'" class="ion-text-center"> Usuarios Verificadores </ion-title>
     <ion-buttons slot="end">
       <ion-icon class="add-button" (click)="openRegisterUserModal()" name="add-circle-outline" color="primary"></ion-icon>
     </ion-buttons>

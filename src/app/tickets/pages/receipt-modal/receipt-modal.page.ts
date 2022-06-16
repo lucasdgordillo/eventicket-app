@@ -19,7 +19,6 @@ export class ReceiptModalPage implements OnInit {
   ) {}
   
   ngOnInit() {
-    console.log(this.receiptData);
   }
 
   downloadPDF() {

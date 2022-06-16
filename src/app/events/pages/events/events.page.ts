@@ -36,6 +36,14 @@ export class EventsPage implements OnInit {
     this.loadEvents();
   }
 
+  doRefresh(event) {
+    this.events = [];
+    this.loadEvents();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1);
+  }
+
   loadEvents() {
     this.eventsService.getAllEvents().subscribe((response) => {
       this.events = response.data;

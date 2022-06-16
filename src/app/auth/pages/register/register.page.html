@@ -4,9 +4,9 @@
       <ion-back-button [text]="''"></ion-back-button>
       <ion-button *ngIf="modalMode" (click)="dismiss()"> Cerrar </ion-button>
     </ion-buttons>
-    <ion-title *ngIf="!modalMode" > Crear una nueva cuenta </ion-title>
-    <ion-title *ngIf="modalMode && !userData" > Crear usuario </ion-title>
-    <ion-title *ngIf="modalMode && userData" > Informacion de usuario </ion-title>
+    <ion-title *ngIf="!modalMode" class="ion-text-center"> Crear una nueva cuenta </ion-title>
+    <ion-title *ngIf="modalMode && !userData" class="ion-text-center"> Crear usuario </ion-title>
+    <ion-title *ngIf="modalMode && userData" class="ion-text-center"> Informacion de usuario </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>

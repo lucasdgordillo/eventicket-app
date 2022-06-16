@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import * as moment from 'moment';
@@ -7,7 +7,7 @@ import { DatetimeModal } from '../../pages/datetime-modal/datetime.modal';
 @Component({
   selector: 'item-datetime-component',
   templateUrl: 'item-datetime.component.html',
-  styleUrls: ['./item-datetime.component.scss'],
+  styleUrls: ['./item-datetime.component.scss']
 })
 
 export class ItemDatetimeComponent {
@@ -55,6 +55,8 @@ export class ItemDatetimeComponent {
       return moment(value).format('h:mm');
     } else if (this.datePresentation === 'date-time') {
       return moment(value).format('YYYY-MM-DD h:mm');
+    } else if (this.datePresentation === 'year') {
+      return moment(value).format('YYYY');
     } else {
       return moment(value).format('YYYY-MM-DD');
     }

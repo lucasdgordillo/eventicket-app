@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [text]="''"></ion-back-button>
+      <ion-back-button [text]="''" [defaultHref]="'/tabs/profile'"></ion-back-button>
     </ion-buttons>
-    <ion-title> Lugares de Eventos </ion-title>
+    <ion-title class="ion-text-center"> Lugares de Eventos </ion-title>
     <ion-buttons slot="end">
       <ion-icon class="add-button" (click)="openEventPlaceModal()" name="add-circle-outline" color="primary"></ion-icon>
     </ion-buttons>

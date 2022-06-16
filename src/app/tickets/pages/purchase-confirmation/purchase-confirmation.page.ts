@@ -14,6 +14,7 @@ import { ReceiptModalPage } from "../receipt-modal/receipt-modal.page";
 export class PurchaseConfirmationPage implements OnInit {
   purchaseCode;
   purchaseData: any;
+  fromCheckout: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +27,7 @@ export class PurchaseConfirmationPage implements OnInit {
   ngOnInit() {
     this.loadingHelper.present();
     this.purchaseCode = this.activatedRoute.snapshot.params.purchaseCode;
+    this.fromCheckout = this.activatedRoute.snapshot.params.fromCheckout ? true : false;
     this.loadPurchaseData();
   }
 

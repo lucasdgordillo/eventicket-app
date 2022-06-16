@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PurchaseStatus } from "src/app/events/models/purchase.interface";
 import { PurchasesService } from "../../services/purchases.service";
@@ -22,6 +22,15 @@ export class PurchasesPage implements OnInit {
   
   ngOnInit() {
     this.loadPurchases();
+  }
+
+  doRefresh(event) {
+    this.activePurchases = [];
+    this.inactivePurchases = [];
+    this.loadPurchases();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1);
   }
 
   loadPurchases() {
