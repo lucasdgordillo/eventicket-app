@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
 import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
+import { EventFilterModalPage } from '../event-filter/event-filter.modal';
 
 @Component({
   selector: 'events-page',
@@ -17,14 +17,14 @@ export class EventsPage implements OnInit {
   role: Role = Role.USER;
   events = [];
   params: any;
-  private ngUnsubscribe = new Subject();
 
   constructor(
     private loadingHelper: LoadingHelper,
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -59,8 +59,14 @@ export class EventsPage implements OnInit {
     this.router.navigate([`/events/event-detail/${event.id}`]);
   }
 
-  // ngOnDestroy() {
-  //   this.ngUnsubscribe.next();
-  //   this.ngUnsubscribe.complete();
-  // }
+  async openFilters() {
+    const modal = await this.modalController.create({
+      component: EventFilterModalPage,
+      componentProps: {},
+      swipeToClose: true
+    });
+
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+  }
 }

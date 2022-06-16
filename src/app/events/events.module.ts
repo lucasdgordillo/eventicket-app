@@ -10,6 +10,7 @@ import { PricesModal } from './pages/prices-modal/prices.modal';
 import { ItemPriceComponent } from './components/item-price/item-price.component';
 import { EventDetailPage } from './pages/event-detail/event-detail.page';
 import { EventCheckoutPage } from './pages/event-checkout/event-checkout.page';
+import { EventFilterModalPage } from './pages/event-filter/event-filter.modal';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { EventCheckoutPage } from './pages/event-checkout/event-checkout.page';
     PricesModal,
     ItemPriceComponent,
     EventDetailPage,
-    EventCheckoutPage
+    EventCheckoutPage,
+    EventFilterModalPage
   ],
   providers: []
 })

@@ -1,0 +1,44 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"> Cerrar </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"> Filtros </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <form name="filterForm" [formGroup]="filterForm">
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Nombre del evento: </ion-label>
+          <ion-input autocomplete="eventTitle" formControlName="eventTitle" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Nombre del artista: </ion-label>
+          <ion-input autocomplete="eventArtist" formControlName="eventArtist" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Categoria: </ion-label>
+          <ion-select formControlName="eventCategory">
+            <ion-select-option *ngFor="let category of eventCategories" [value]="category.id">{{ category.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="rounded-item">
+          <ion-label position="floating"> Lugar: </ion-label>
+          <ion-select formControlName="eventPlace">
+            <ion-select-option *ngFor="let place of eventPlaces" [value]="place.id">{{ place.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-text-center">
+    <ion-col size="6">
+      <ion-button expand="block" color="primary" fill="outline" (click)="resetFiltersAction()"> Limpiar </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="block" color="primary" (click)="filterAction()"> Filtrar </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
