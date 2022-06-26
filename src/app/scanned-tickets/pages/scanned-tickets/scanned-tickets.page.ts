@@ -23,6 +23,15 @@ export class ScannedTicketsPage implements OnInit {
     this.loadTickets();
   }
 
+  doRefresh(event) {
+    this.verifiedTickets = [];
+    this.rejectedTickets = [];
+    this.loadTickets();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1);
+  }
+
   loadTickets() {
     this.purchasesService.getAllScannedPurchases().subscribe( (scannedPurchases) => {
       if (!scannedPurchases.data) {

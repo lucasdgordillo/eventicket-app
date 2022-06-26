@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PurchaseStatus } from "src/app/events/models/purchase.interface";
+import { LoadingHelper } from "src/app/shared/helpers/loading.helper";
 import { PurchasesService } from "../../services/purchases.service";
 
 @Component({
@@ -15,12 +16,13 @@ export class PurchasesPage implements OnInit {
   inactivePurchases = [];
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private purchasesService: PurchasesService
+    private purchasesService: PurchasesService,
+    private loadingHelper: LoadingHelper
   ) {}
   
   ngOnInit() {
+    this.loadingHelper.present();
     this.loadPurchases();
   }
 
@@ -42,7 +44,10 @@ export class PurchasesPage implements OnInit {
         } else {
           this.inactivePurchases.push(purchase);
         }
+        this.loadingHelper.dismiss();
       });
+    }, (error) => {
+      this.loadingHelper.dismiss();
     });
   }
 

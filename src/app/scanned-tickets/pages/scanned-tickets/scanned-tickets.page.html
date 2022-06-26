@@ -17,6 +17,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen="true">
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 	<ion-grid class="ion-padding">
 		<ion-row *ngIf="currentSegment === 'verified'">
 			<ion-col size="12" class="ion-no-padding">
