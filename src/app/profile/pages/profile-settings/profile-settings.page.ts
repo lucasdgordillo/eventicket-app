@@ -57,8 +57,6 @@ export class ProfileSettingsPage implements OnInit {
     const { data } = await modal.onWillDismiss();
 
     if (data) {
-      console.log(data);
-
       if (data.action === 'update') {
         this.loadingHelper.present();
         this.usersService.updateUser(data.value).subscribe(() => {

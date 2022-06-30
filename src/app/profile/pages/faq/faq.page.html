@@ -27,15 +27,38 @@
       <p class="main-text"> Lamentamos que tengas un problema! Puedes dejar tu reclamo al correo reclamos@eventicket.com o llamar al 0800-555-9000 </p>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="userRol === 'user'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como funciona la app para los usuarios comunes? </h5>
+      <h5> ¿Como funciona la app para los usuarios/clientes finales? </h5>
       <p class="main-text"> Es muy simple. El usuario se crea su cuenta, luego puede ver los eventos disponibles en la seccion 'Eventos'
         y puede comprar los tickets que les sea necesario. Luego de la compra se generara un recibo y un codigo QR para poder usarlo al
       momento del evento </p>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="userRol === 'user'">
+    <ion-col size="12" class="ion-padding">
+      <h5> ¿Puedo comprar usando la tarjeta de mi padre/madre/hermano/amigo? </h5>
+      <p class="main-text"> De momento no. El titular de la tarjeta y el titular de esta cuenta deben ser los mismo, ya que es posible que se le solicite identificacion al momento
+        de retirar el/los tickets </p>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="userRol === 'user'">
+    <ion-col size="12" class="ion-padding">
+      <h5> ¿Puedo transferir un ticket a otro usuario? </h5>
+      <p class="main-text"> La funcionalidad de transferencia de tickets por el momento esta en desarollo, pero puedes solicitar via email la transferencia de ticket siempre y cuando el otro usuario
+        este registrado en la plataforma.
+      </p>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="userRol === 'user'">
+    <ion-col size="12" class="ion-padding">
+      <h5> ¿Puedo hacer una devolucion de un ticket? </h5>
+      <p class="main-text"> No. Los tickets comprados no tienen devolucion. En caso que el evento sea cancelado por un factor externo por condiciones climaticas u otro motivo, la productora se hara cargo de la
+        devolucion de los tickets correspondientes.
+      </p>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="userRol === 'productor'">
     <ion-col size="12" class="ion-padding">
       <h5> ¿Como funciona la app para los usuarios productores? </h5>
       <p class="main-text"> Los usuarios productores tendran la libertad de crear sus propios eventos sin intervencion de nuestro equipo.
@@ -44,15 +67,33 @@
       </p>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="userRol === 'productor'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como administro mis empleado de relaciones publicas? (Usuarios productores) </h5>
+      <h5> ¿Como administro mis empleados de relaciones publicas (RRPP)? </h5>
       <p class="main-text"> EventicketApp te permite crear y administrar tus propios usuarios rrpps! Para ello debes loguearte
         luego ir a configuraciones y luego tocar en 'RRPPs'. Ahi podras agregar, editar o eliminar tus empleados de relaciones publicas.
       </p>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="userRol === 'productor'">
+    <ion-col size="12" class="ion-padding">
+      <h5> ¿Como administro mis empleados verificadores? </h5>
+      <p class="main-text"> EventicketApp te permite crear y administrar tus propios usuarios verificadores! Para ello debes loguearte
+        luego ir a configuraciones y luego tocar en 'Usuarios Verificadores'. Ahi podras agregar, editar o eliminar tus empleados verificadores. Recorda que estos usuarios son aquellos que
+        van a estar en puerta del evento verificando la validez de cada codigo QR. En caso de que un empleado no trabaje mas en la productora, es responsabilidad de la productora eliminar el acceso a dicho
+        usuario verificador.
+      </p>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="userRol === 'productor'">
+    <ion-col size="12" class="ion-padding">
+      <h5> ¿Puedo cancelar un evento? </h5>
+      <p class="main-text"> Si. La cancelacion se puede hacer atraves de nuestra aplicacion con solo darle al boton 'Cancelar evento' en los detalles del evento. Una vez cancelado la productora es responsable de la
+        devolucion de los tickets. Se puede solicitar informacion de los asistentes del evento al correo soporte@eventicket.com
+      </p>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="userRol === 'checker'">
     <ion-col size="12" class="ion-padding">
       <h5> ¿Como funciona la app para los usuarios verificadores? </h5>
       <p class="main-text"> Los usuarios verificadores los crea un usuario productor. El mismo es el que le va a proporcionar un nombre de usuario y
