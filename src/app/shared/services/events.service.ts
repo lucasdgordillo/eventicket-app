@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { EventCategory } from "src/app/profile/models/event-category.interface";
@@ -70,8 +70,15 @@ export class EventsService {
     return this.http.post<any>(`${environment.baseApiUrl}/events/create`, event);
   }
 
-  getAllEvents(): Observable<any> {
-    return this.http.get<any>(`${environment.baseApiUrl}/events`);
+  getAllEvents(filters = null): Observable<any> {
+    const params = new HttpParams()
+      .set('title', filters.title)
+      .set('artist', filters.artist)
+      .set('productor', filters.productor)
+      .set('category', filters.category)
+      .set('place', filters.place);
+
+    return this.http.get<any>(`${environment.baseApiUrl}/events`, { params });
   }
 
   getEventById(eventId): Observable<any> {

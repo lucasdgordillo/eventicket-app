@@ -5,6 +5,7 @@ import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
+import { EventFilter } from '../../models/event-filter.model';
 import { EventFilterModalPage } from '../event-filter/event-filter.modal';
 
 @Component({
@@ -17,6 +18,7 @@ export class EventsPage implements OnInit {
   role: Role = Role.USER;
   events = [];
   params: any;
+  filterData: EventFilter = new EventFilter();
 
   constructor(
     private loadingHelper: LoadingHelper,
@@ -45,10 +47,15 @@ export class EventsPage implements OnInit {
   }
 
   loadEvents() {
-    this.eventsService.getAllEvents().subscribe((response) => {
+    this.eventsService.getAllEvents(this.filterData).subscribe((response) => {
       this.events = response.data;
       this.loadingHelper.dismiss();
     });
+  }
+
+  filterAction(data) {
+    this.filterData = new EventFilter(data.eventTitle, data.eventArtist, data.eventProductor, data.eventCategory, data.eventPlace);
+    this.loadEvents();
   }
 
   createNewEvent() {
@@ -62,11 +69,17 @@ export class EventsPage implements OnInit {
   async openFilters() {
     const modal = await this.modalController.create({
       component: EventFilterModalPage,
-      componentProps: {},
+      componentProps: {
+        filterData: this.filterData
+      },
       swipeToClose: true
     });
 
     await modal.present();
     const { data } = await modal.onWillDismiss();
+
+    if (data) {
+      this.filterAction(data);
+    }
   }
 }

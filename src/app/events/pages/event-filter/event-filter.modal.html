@@ -19,6 +19,12 @@
           <ion-input autocomplete="eventArtist" formControlName="eventArtist" type="text"></ion-input>
         </ion-item>
         <ion-item class="rounded-item">
+          <ion-label position="floating"> Productora: </ion-label>
+          <ion-select formControlName="eventProductor">
+            <ion-select-option *ngFor="let user of productorUsers" [value]="user.id">{{ user.displayName }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="rounded-item">
           <ion-label position="floating"> Categoria: </ion-label>
           <ion-select formControlName="eventCategory">
             <ion-select-option *ngFor="let category of eventCategories" [value]="category.id">{{ category.name }}</ion-select-option>
@@ -33,6 +39,8 @@
       </form>
     </ion-col>
   </ion-row>
+</ion-content>
+<ion-footer>
   <ion-row class="ion-text-center">
     <ion-col size="6">
       <ion-button expand="block" color="primary" fill="outline" (click)="resetFiltersAction()"> Limpiar </ion-button>
@@ -41,4 +49,4 @@
       <ion-button expand="block" color="primary" (click)="filterAction()"> Filtrar </ion-button>
     </ion-col>
   </ion-row>
-</ion-content>
+</ion-footer>

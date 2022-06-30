@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ModalController } from "@ionic/angular";
 import * as moment from "moment";
+import { UsersService } from "src/app/profile/services/users.service";
 import { EventsService } from 'src/app/shared/services/events.service';
 
 @Component({
@@ -11,21 +12,25 @@ import { EventsService } from 'src/app/shared/services/events.service';
 })
 
 export class EventFilterModalPage implements OnInit {
+  @Input() filterData: any;
   eventPlaces = [];
   eventCategories = [];
   provinces = [];
+  productorUsers = [];
 
   public filterForm: FormGroup = new FormGroup({
     eventTitle: new FormControl(''),
     eventArtist: new FormControl(''),
     eventDate: new FormControl(''),
     eventPlace: new FormControl(''),
-    eventCategory: new FormControl('')
+    eventCategory: new FormControl(''),
+    eventProductor: new FormControl('')
   });
 
   constructor(
     private eventsService: EventsService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private usersService: UsersService
   ) {}
 
   ngOnInit() {
@@ -38,6 +43,9 @@ export class EventFilterModalPage implements OnInit {
     });
     this.eventsService.getAllEventPlaces().subscribe((response) => {
       this.eventPlaces = response.data;
+    });
+    this.usersService.getProductorUsers().subscribe((response) => {
+      this.productorUsers = response.data;
     });
   }
 

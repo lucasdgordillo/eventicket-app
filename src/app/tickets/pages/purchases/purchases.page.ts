@@ -44,8 +44,8 @@ export class PurchasesPage implements OnInit {
         } else {
           this.inactivePurchases.push(purchase);
         }
-        this.loadingHelper.dismiss();
       });
+      this.loadingHelper.dismiss();
     }, (error) => {
       this.loadingHelper.dismiss();
     });

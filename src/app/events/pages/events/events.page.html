@@ -6,18 +6,8 @@
 		</ion-buttons>
 	</ion-toolbar>
 	<ion-toolbar *ngIf="role !== 'productor'">
-		<!-- <ion-row class="ion-text-right"> -->
-			<ion-title class="ion-text-center"> Eventos disponibles </ion-title>
-			<!-- <ion-col class="ion-no-padding" size="10">
-				<ion-searchbar showCancelButton="focus" placeholder="Buscar evento"></ion-searchbar>
-			</ion-col>
-			<ion-col class="ion-no-padding" size="2">
-				<ion-icon class="filter-icon" name="filter-circle-outline"></ion-icon>
-			</ion-col> -->
-			<ion-buttons slot="end">
-				<ion-icon class="add-button" (click)="openFilters()" name="filter-circle-outline" color="primary"></ion-icon>
-			</ion-buttons>
-		<!-- </ion-row> -->
+		<ion-title class="ion-text-center"> Eventos disponibles </ion-title>
+		<ion-icon class="filter-icon" (click)="openFilters()" name="filter-circle-outline" color="primary" slot="end"></ion-icon>
 	</ion-toolbar>
 </ion-header>
 <ion-content fullscreen="true">

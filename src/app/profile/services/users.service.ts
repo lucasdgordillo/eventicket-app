@@ -14,4 +14,8 @@ export class UsersService {
   getUsersByCreator(): Observable<any> {
     return this.http.get<any>(`${environment.baseApiUrl}/users`);
   }
+
+  getProductorUsers(): Observable<any> {
+    return this.http.get<any>(`${environment.baseApiUrl}/users/productor-users`);
+  }
 }
