@@ -19,7 +19,7 @@ export class ReportsService {
     return this.http.post<any>(`${environment.baseApiUrl}/reports/ticket-sales-report`, params);
   }
 
-  getTicketsQuantityByProvince() {
-    return this.http.post<any>(`${environment.baseApiUrl}/reports/purchases-by-province-report`, {});
+  getTicketsQuantityByProvince(params) {
+    return this.http.post<any>(`${environment.baseApiUrl}/reports/purchases-by-province-report`, params);
   }
 }

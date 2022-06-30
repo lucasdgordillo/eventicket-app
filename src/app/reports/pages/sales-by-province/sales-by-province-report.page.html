@@ -13,6 +13,7 @@
         <p> Este reporte corresponde a la cantidad de tickets comprados por provincia. </p>
       </ion-col>
     </ion-row>
+    <report-filter-component [events]="events" (filterEvent)="filterAction($event)"></report-filter-component>
   </ion-grid>
   <ion-card>
     <ion-card-header class="ion-text-center">

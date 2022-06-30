@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angula
 import { Router } from "@angular/router";
 import { Chart, registerables } from 'chart.js';
 import { LoadingHelper } from "src/app/shared/helpers/loading.helper";
+import { EventsService } from "src/app/shared/services/events.service";
 import { ReportsService } from "../../services/reports.service";
 Chart.register(...registerables);
 
@@ -14,15 +15,22 @@ export class SalesByProvinceReport implements OnInit, AfterViewInit {
   @ViewChild('doughnutCanvas') doughnutCanvas: ElementRef;
   doughnutChart: any;
   reportData;
+  events = [];
 
   constructor(
-    private router: Router,
+    private eventsService: EventsService,
     private reportsService: ReportsService,
     private loadingHelper: LoadingHelper
   ) { }
 
   ngOnInit(): void {
-    this.reportsService.getTicketsQuantityByProvince().subscribe((response) => {
+    this.loadEvents();
+    this.loadReport();
+  }
+
+  loadReport(filters = null) {
+    this.loadingHelper.present();
+    this.reportsService.getTicketsQuantityByProvince(filters).subscribe((response) => {
       const data = response.data;
       const names = [];
       const totals = [];
@@ -35,11 +43,26 @@ export class SalesByProvinceReport implements OnInit, AfterViewInit {
       this.doughnutChart.destroy();
       this.loadDoughnutChartMethod(names, totals);
       this.loadingHelper.dismiss();
-    })
+    }, error => {
+      this.loadingHelper.dismiss();
+    });
   }
 
   ngAfterViewInit() {
     this.loadDoughnutChartMethod();
+  }
+
+  loadEvents() {
+    this.eventsService.getAllEvents().subscribe((response) => {
+      this.events = response.data;
+      this.loadingHelper.dismiss();
+    }, (error) => {
+      this.loadingHelper.dismiss();
+    });
+  }
+
+  filterAction(event) {
+    this.loadReport(event.value);
   }
 
   loadDoughnutChartMethod(dataX = [], dataY = []) {

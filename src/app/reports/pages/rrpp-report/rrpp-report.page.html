@@ -13,7 +13,7 @@
         <p> Con este reporte podras ver las ganancias que generaron tus empleados tipo RRPPs sobre tus eventos. Por defecto te trae el total recaudado de todos los eventos, pero puedes filtrar por evento como opcional </p>
       </ion-col>
     </ion-row>
-    <report-filter-component [events]="events" (filterEvent)="filterAction($event)"></report-filter-component>
+    <report-filter-component [events]="events" [datesEnabled]="true" (filterEvent)="filterAction($event)"></report-filter-component>
   </ion-grid>
   <ion-card>
     <ion-card-header>

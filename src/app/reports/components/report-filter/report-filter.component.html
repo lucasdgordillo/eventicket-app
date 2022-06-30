@@ -8,8 +8,8 @@
             <ion-select-option *ngFor="let event of events" [value]="event.id">{{ event.title }}</ion-select-option>
           </ion-select>
         </ion-item>
-        <item-datetime-component *ngIf="!yearEnabled" [label]="'Fecha desde:'" [datePresentation]="'date'" (selectDateTimeEvent)="setDateTimeValue($event, 'dateFrom', 'YYYY-MM-DD')"></item-datetime-component>
-        <item-datetime-component *ngIf="!yearEnabled" [label]="'Fecha hasta:'" [datePresentation]="'date'" (selectDateTimeEvent)="setDateTimeValue($event, 'dateTo', 'YYYY-MM-DD')"></item-datetime-component>
+        <item-datetime-component *ngIf="!yearEnabled && datesEnabled" [label]="'Fecha desde:'" [datePresentation]="'date'" (selectDateTimeEvent)="setDateTimeValue($event, 'dateFrom', 'YYYY-MM-DD')"></item-datetime-component>
+        <item-datetime-component *ngIf="!yearEnabled && datesEnabled" [label]="'Fecha hasta:'" [datePresentation]="'date'" (selectDateTimeEvent)="setDateTimeValue($event, 'dateTo', 'YYYY-MM-DD')"></item-datetime-component>
         <item-datetime-component *ngIf="yearEnabled" [label]="'Año:'" [datePresentation]="'year'" (selectDateTimeEvent)="setDateTimeValue($event, 'year', 'YYYY')"></item-datetime-component>
       </ion-item-group>
     </form>

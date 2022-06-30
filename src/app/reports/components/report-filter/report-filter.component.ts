@@ -10,6 +10,7 @@ import * as moment from "moment";
 
 export class ReportFilterComponent implements OnInit {
   @Input() yearEnabled: boolean = false;
+  @Input() datesEnabled: boolean = false;
   @Input() events = [];
   @Output() filterEvent = new EventEmitter();
 
@@ -25,7 +26,8 @@ export class ReportFilterComponent implements OnInit {
     if (this.yearEnabled) {
       this.filterForm.addControl('year', this.formBuilder.control('2022'));
       this.filterForm.get('eventId').setValidators(Validators.required);
-    } else {
+    }
+    if (this.datesEnabled) {
       this.filterForm.addControl('dateFrom', this.formBuilder.control(''));
       this.filterForm.addControl('dateTo', this.formBuilder.control(''));
     }
