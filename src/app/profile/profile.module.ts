@@ -14,6 +14,7 @@ import { RrppModalPage } from './pages/rrpp-modal/rrpp-modal.page';
 import { UsersPage } from './pages/users/users.page';
 import { TermsAndConditionsPage } from './pages/terms-and-conditions/terms-and-conditions.page';
 import { FaqPage } from './pages/faq/faq.page';
+import { EditUserModalPage } from './pages/edit-user-modal/edit-user-modal.page';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { FaqPage } from './pages/faq/faq.page';
     RrppModalPage,
     UsersPage,
     TermsAndConditionsPage,
-    FaqPage
+    FaqPage,
+    EditUserModalPage
   ],
   providers: []
 })

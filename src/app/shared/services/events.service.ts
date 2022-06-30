@@ -71,14 +71,18 @@ export class EventsService {
   }
 
   getAllEvents(filters = null): Observable<any> {
-    const params = new HttpParams()
-      .set('title', filters.title)
-      .set('artist', filters.artist)
-      .set('productor', filters.productor)
-      .set('category', filters.category)
-      .set('place', filters.place);
-
-    return this.http.get<any>(`${environment.baseApiUrl}/events`, { params });
+    if (filters) {
+      const params = new HttpParams()
+        .set('title', filters.title)
+        .set('artist', filters.artist)
+        .set('productor', filters.productor)
+        .set('category', filters.category)
+        .set('place', filters.place);
+        
+      return this.http.get<any>(`${environment.baseApiUrl}/events`, { params });  
+    } else {
+      return this.http.get<any>(`${environment.baseApiUrl}/events`);  
+    }
   }
 
   getEventById(eventId): Observable<any> {
