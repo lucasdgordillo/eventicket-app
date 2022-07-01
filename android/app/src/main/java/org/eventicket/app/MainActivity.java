@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package org.eventicket.app;
 
 import com.getcapacitor.BridgeActivity;
 

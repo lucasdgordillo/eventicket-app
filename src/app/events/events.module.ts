@@ -11,6 +11,7 @@ import { ItemPriceComponent } from './components/item-price/item-price.component
 import { EventDetailPage } from './pages/event-detail/event-detail.page';
 import { EventCheckoutPage } from './pages/event-checkout/event-checkout.page';
 import { EventFilterModalPage } from './pages/event-filter/event-filter.modal';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { EventFilterModalPage } from './pages/event-filter/event-filter.modal';
     EventCheckoutPage,
     EventFilterModalPage
   ],
-  providers: []
+  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EventsModule {}

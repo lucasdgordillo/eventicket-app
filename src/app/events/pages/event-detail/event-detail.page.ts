@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ViewDidEnter } from '@ionic/angular';
 import * as moment from 'moment';
 import { Role } from 'src/app/auth/models/role.enum';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -8,16 +8,20 @@ import { LoadingHelper } from 'src/app/shared/helpers/loading.helper';
 import { MessageHelper } from 'src/app/shared/helpers/message.helper';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { environment } from 'src/environments/environment';
+import { GoogleMap, Marker } from '@capacitor/google-maps';
 
 @Component({
   selector: 'even-datail-page',
   templateUrl: 'event-detail.page.html',
   styleUrls: ['./event-detail.page.scss'],
 })
-export class EventDetailPage implements OnInit {
+export class EventDetailPage implements OnInit, AfterViewInit {
+  @ViewChild('map', { static: false }) public mapRef: ElementRef<HTMLElement>;
+  eventPlaceMap: GoogleMap;
   eventId;
   eventData;
   role: Role = Role.USER;
+  placeMarkerObj = { lat: -38.416097, lng: -63.616672 };
   readonly defaultImage = 'https://media.istockphoto.com/photos/dancing-friends-picture-id501387734?k=20&m=501387734&s=612x612&w=0&h=1mli5b7kpDg428fFZfsDPJ9dyVHsWsGK-EVYZUGWHpI=';
 
   constructor(
@@ -39,11 +43,36 @@ export class EventDetailPage implements OnInit {
     this.loadEventInformation();
   }
 
+  ngAfterViewInit() {
+    this.loadMap();
+    setTimeout(() => {
+      this.loadMap();
+    }, 1500);
+  }
+
   loadEventInformation() {
     this.eventsService.getEventById(this.eventId).subscribe((event) => {
       this.eventData = event.data;
+      this.placeMarkerObj = {
+        lat: Number(event.data.place.latitude),
+        lng: Number(event.data.place.longitude)
+      };
       this.loadingHelper.dismiss();
     });
+  }
+
+  async loadMap() {
+    this.eventPlaceMap = await GoogleMap.create({
+      id: 'map',
+      element: this.mapRef.nativeElement,
+      apiKey: environment.googleMapsApiKey,
+      config: {
+        center: this.placeMarkerObj,
+        zoom: 15,
+      },
+    });
+    const marker: Marker = { coordinate: this.placeMarkerObj };
+    this.eventPlaceMap.addMarker(marker);
   }
 
   formatDate(date) {

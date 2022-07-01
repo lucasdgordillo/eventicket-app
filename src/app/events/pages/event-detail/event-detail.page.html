@@ -68,6 +68,9 @@
           <ion-icon name="pin-outline" slot="start" class="icon-without-margin"></ion-icon>
           <ion-label> {{ eventData.place.address }} </ion-label>
         </ion-item>
+        <ion-item>
+          <capacitor-google-maps #map></capacitor-google-maps>
+        </ion-item>
       </ion-card>
     </ion-col>
   </ion-row>

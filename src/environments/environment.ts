@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'http://localhost:3000/api',
-  // baseApiUrl: 'https://eventicket-service.herokuapp.com/api',
-  imagesUrl: 'http://localhost:3000/event-images/',
-  // imagesUrl: 'https://eventicket-service.herokuapp.com/event-images/'
+  // baseApiUrl: 'http://localhost:3000/api',
+  baseApiUrl: 'https://eventicket-service.herokuapp.com/api',
+  // imagesUrl: 'http://localhost:3000/event-images/',
+  imagesUrl: 'https://eventicket-service.herokuapp.com/event-images/',
+  googleMapsApiKey: 'AIzaSyDQWmX45cICBks87HCShe9AWKCnkryRjig'
 };
 
 /*
