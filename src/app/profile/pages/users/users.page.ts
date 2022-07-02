@@ -75,7 +75,7 @@ export class UsersPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.authService.register(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Usuario creado con exito!');
+          this.messageHelper.presentToast('Usuario creado con éxito!');
           this.loadUsers();
         },
         (error) => {

@@ -61,7 +61,7 @@ export class EventPlacesPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.createEventPlace(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría creada con exito!');
+          this.messageHelper.presentToast('Categoría creada con éxito!');
           this.loadEventPlaces();
         },
         (error) => {
@@ -73,7 +73,7 @@ export class EventPlacesPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.editEventPlace(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Lugar actualizado con exito!');
+          this.messageHelper.presentToast('Lugar actualizado con éxito!');
           this.loadEventPlaces();
         },
         (error) => {
@@ -85,7 +85,7 @@ export class EventPlacesPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.deleteEventPlace(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Lugar eliminado con exito!');
+          this.messageHelper.presentToast('Lugar eliminado con éxito!');
           this.loadEventPlaces();
         },
         (error) => {

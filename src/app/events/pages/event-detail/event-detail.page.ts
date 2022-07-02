@@ -94,8 +94,8 @@ export class EventDetailPage implements OnInit, AfterViewInit {
   async cancelEvent() {
     const alert = await this.alertController.create({
       header: 'Cancelar evento',
-      subHeader: 'Esta usted seguro de cancelar este evento?',
-      message: 'Tenga en cuenta que luego de cancelar debera comunicarse al 0800 555 3456 para solicitar la devolucion de tickets',
+      subHeader: 'Está usted seguro de cancelar este evento?',
+      message: 'Tenga en cuenta que luego de cancelar deberá comunicarse al 0800 555 3456 para solicitar la devolución de tickets',
       buttons: [
         {
           text: 'Volver',
@@ -117,7 +117,7 @@ export class EventDetailPage implements OnInit, AfterViewInit {
   deleteEvent() {
     this.loadingHelper.present();
     this.eventsService.deleteEvent(this.eventId).subscribe(() => {
-      this.messageHelper.presentToast('Evento cancelado con exito!');
+      this.messageHelper.presentToast('Evento cancelado con éxito!');
       this.loadingHelper.dismiss();
       this.router.navigate(['/events']);
     }, (error) => {

@@ -62,7 +62,7 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.createCategory({ name: data.value }).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría creada con exito!');
+          this.messageHelper.presentToast('Categoría creada con éxito!');
           this.loadCategories();
         },
         (error) => {
@@ -74,7 +74,7 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.editCategory(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría actualizada con exito!');
+          this.messageHelper.presentToast('Categoría actualizada con éxito!');
           this.loadCategories();
         },
         (error) => {
@@ -86,7 +86,7 @@ export class EventCategoriesPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.deleteCategory(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('Categoría eliminada con exito!');
+          this.messageHelper.presentToast('Categoría eliminada con éxito!');
           this.loadCategories();
         },
         (error) => {

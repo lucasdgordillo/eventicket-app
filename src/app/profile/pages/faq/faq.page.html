@@ -15,51 +15,51 @@
   <ion-row>
     <ion-col size="12" class="ion-padding">
       <h5> ¿Quienes somos? </h5>
-      <p class="main-text"> Bienvendios a nuestra aplicacion! Nos alegra tenerte por aca. Nuestra empresa se dedica exclusivamente a la venta de 
-        tickets digitales para asi agilizar los procesos de venta. Nuestra fundacion fue en Marzo del 2022 por el founder Lucas Gordillo 110938 de la provincia de Cordoba.
+      <p class="main-text"> ¡Bienvendios a nuestra aplicación! Nos alegra tenerte por acá. Nuestra empresa se dedica exclusivamente a la venta de 
+        tickets digitales para así agilizar los procesos de venta. Nuestra fundación fue en Marzo del 2022 por el fundador Lucas Gordillo 110938 de la provincia de Córdoba.
       </p>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como me contacto con ustedes? </h5>
-      <p class="main-text"> Por cualquier duda o consulta nos podes escribir al correo administracion@eventicket.com o al 0800-555-6464</p>
+      <h5> ¿Cómo me contacto con ustedes? </h5>
+      <p class="main-text"> Por cualquier duda o consulta nos podés escribir al correo atencion@eventicket.com o al 0800-555-6464</p>
     </ion-col>
   </ion-row>
   <ion-row class="ion-no-margin">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Por donde me comunico por quejas o reclamos? </h5>
-      <p class="main-text"> Lamentamos que tengas un problema! Puedes dejar tu reclamo al correo reclamos@eventicket.com o llamar al 0800-555-9000 </p>
+      <h5> ¿Por dónde me comunico por quejas o reclamos? </h5>
+      <p class="main-text"> ¡Lamentamos que tengas un problema! Puedes dejar tu reclamo al correo reclamos@eventicket.com o llamar al 0800-555-9000 </p>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="userRol === 'user'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como funciona la app para los usuarios/clientes finales? </h5>
-      <p class="main-text"> Es muy simple. El usuario se crea su cuenta, luego puede ver los eventos disponibles en la seccion 'Eventos'
-        y puede comprar los tickets que les sea necesario. Luego de la compra se generara un recibo y un codigo QR para poder usarlo al
+      <h5> ¿Cómo funciona la app para los usuarios/clientes finales? </h5>
+      <p class="main-text"> Es muy simple. El usuario se crea su cuenta, luego puede ver los eventos disponibles en la sección 'Eventos'
+        y puede comprar los tickets que les sea necesario. Luego de la compra se generara un recibo y un código QR para poder usarlo al
       momento del evento </p>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="userRol === 'user'">
     <ion-col size="12" class="ion-padding">
       <h5> ¿Puedo comprar usando la tarjeta de mi padre/madre/hermano/amigo? </h5>
-      <p class="main-text"> De momento no. El titular de la tarjeta y el titular de esta cuenta deben ser los mismo, ya que es posible que se le solicite identificacion al momento
+      <p class="main-text"> De momento no. El titular de la tarjeta y el titular de esta cuenta deben ser los mismos, ya que es posible que se le solicite identificación al momento
         de retirar el/los tickets </p>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="userRol === 'user'">
     <ion-col size="12" class="ion-padding">
       <h5> ¿Puedo transferir un ticket a otro usuario? </h5>
-      <p class="main-text"> La funcionalidad de transferencia de tickets por el momento esta en desarollo, pero puedes solicitar via email la transferencia de ticket siempre y cuando el otro usuario
+      <p class="main-text"> La funcionalidad de transferencia de tickets por el momento está en desarrollo, pero puedes solicitar vía email la transferencia de ticket siempre y cuando el otro usuario
         este registrado en la plataforma.
       </p>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="userRol === 'user'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Puedo hacer una devolucion de un ticket? </h5>
-      <p class="main-text"> No. Los tickets comprados no tienen devolucion. En caso que el evento sea cancelado por un factor externo por condiciones climaticas u otro motivo, la productora se hara cargo de la
-        devolucion de los tickets correspondientes.
+      <h5> ¿Puedo hacer una devolución de un ticket? </h5>
+      <p class="main-text"> No. Los tickets comprados no tienen devolución. En caso de que el evento sea cancelado por un factor externo, por condiciones climáticas u otro motivo, la productora se hará cargo de la
+        devolución de los tickets correspondientes.
       </p>
     </ion-col>
   </ion-row>
@@ -74,18 +74,18 @@
   </ion-row>
   <ion-row *ngIf="userRol === 'productor'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como administro mis empleados de relaciones publicas (RRPP)? </h5>
-      <p class="main-text"> EventicketApp te permite crear y administrar tus propios usuarios rrpps! Para ello debes loguearte
-        luego ir a configuraciones y luego tocar en 'RRPPs'. Ahi podras agregar, editar o eliminar tus empleados de relaciones publicas.
+      <h5> ¿Cómo administro mis empleados de relaciones publicas (RRPP)? </h5>
+      <p class="main-text"> ¡EventicketApp te permite crear y administrar tus propios usuarios de relaciones publicas! Para ello debes conectarte como usuario productor, 
+        luego ir a configuraciones y luego tocar en 'RRPPs'. Ahí podrás agregar, editar o eliminar tus empleados de relaciones públicas.
       </p>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="userRol === 'productor'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como administro mis empleados verificadores? </h5>
-      <p class="main-text"> EventicketApp te permite crear y administrar tus propios usuarios verificadores! Para ello debes loguearte
-        luego ir a configuraciones y luego tocar en 'Usuarios Verificadores'. Ahi podras agregar, editar o eliminar tus empleados verificadores. Recorda que estos usuarios son aquellos que
-        van a estar en puerta del evento verificando la validez de cada codigo QR. En caso de que un empleado no trabaje mas en la productora, es responsabilidad de la productora eliminar el acceso a dicho
+      <h5> ¿Cómo administro mis empleados verificadores? </h5>
+      <p class="main-text"> ¡EventicketApp te permite crear y administrar tus propios usuarios verificadores! Para ello debes conectarte como usuario productor
+        luego ir a configuraciones y luego tocar en 'Usuarios Verificadores'. Ahí podrás agregar, editar o eliminar tus empleados verificadores. Recuerda que estos usuarios son aquellos que
+        van a estar en puerta del evento verificando la validez de cada código QR. En caso de que un empleado no trabaje más en la productora, es responsabilidad de la productora eliminar el acceso a dicho
         usuario verificador.
       </p>
     </ion-col>
@@ -93,28 +93,28 @@
   <ion-row *ngIf="userRol === 'productor'">
     <ion-col size="12" class="ion-padding">
       <h5> ¿Puedo cancelar un evento? </h5>
-      <p class="main-text"> Si. La cancelacion se puede hacer atraves de nuestra aplicacion con solo darle al boton 'Cancelar evento' en los detalles del evento. Una vez cancelado la productora es responsable de la
-        devolucion de los tickets. Se puede solicitar informacion de los asistentes del evento al correo soporte@eventicket.com
+      <p class="main-text"> Sí. La cancelación se puede hacer a través de nuestra aplicación con solo darle al botón 'Cancelar evento' en los detalles del evento. Una vez cancelado, la productora es responsable de la
+        devolución de los tickets. Se puede solicitar información de los asistentes del evento al correo soporte@eventicket.com.
       </p>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="userRol === 'checker'">
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Como funciona la app para los usuarios verificadores? </h5>
+      <h5> ¿Cómo funciona la app para los usuarios verificadores? </h5>
       <p class="main-text"> Los usuarios verificadores los crea un usuario productor. El mismo es el que le va a proporcionar un nombre de usuario y
-        una constrasena. Luego puede loguearse y vera la opcion para escanear tickets y vericarlos. </p>
+        una contraseña. Luego puede conectarse y verá la opción para escanear tickets y validar los mismos. </p>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Que medios de pago aceptan? </h5>
-      <p class="main-text"> Aceptamos cualquier tarjeta de debito o credito de la entidad Visa o Mastercard. </p>
+      <h5> ¿Qué medios de pago aceptan? </h5>
+      <p class="main-text"> Aceptamos cualquier tarjeta de débito o crédito de la entidad Visa o Mastercard. </p>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="12" class="ion-padding">
-      <h5> ¿Que hago si olvide mi contrasena? </h5>
-      <p class="main-text"> Comunicate con soporte para que te blanqueen la clave al correo soporte@eventicket.com </p>
+      <h5> ¿Qué hago si olvide mi contraseña? </h5>
+      <p class="main-text"> Comunícate con soporte para que te blanqueen la clave al correo soporte@eventicket.com </p>
     </ion-col>
   </ion-row>
 </ion-content>

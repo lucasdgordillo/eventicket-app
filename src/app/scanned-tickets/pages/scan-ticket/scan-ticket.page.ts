@@ -38,12 +38,12 @@ export class ScanTicketPage implements OnInit {
     const todayDate = moment().format('YYYY-MM-DD');
     this.purchasesService.verifyPurchaseCode(purchaseCode, todayDate).subscribe((response) => {
       this.loadingHelper.dismiss();
-      this.messageHelper.presentToast('Ticket validado con exito!', 2500);
+      this.messageHelper.presentToast('Ticket validado con éxito!', 2500);
       this.goToMyVerifyTickets();
     }, (error) => {
       this.loadingHelper.dismiss();
       if (error.error.message === 'PURCHASE_CODE_INVALID') {
-        this.messageHelper.showAlertError('El codigo es invalido', false);
+        this.messageHelper.showAlertError('El código es inválido o ya está en uso', false);
       }
     });
   }

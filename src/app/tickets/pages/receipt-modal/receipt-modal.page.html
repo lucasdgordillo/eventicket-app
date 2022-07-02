@@ -9,13 +9,13 @@
 <ion-content>
   <div id="receipt-pdf" class="invoice-box">
     <table>
-      <tr class="top">
+      <tr class="top logo">
         <td colspan="2">
           <table>
             <tr>
-              <!-- <td class="title">
-                <img src="./images/logo.png" alt="Company logo" style="width: 100%; max-width: 300px" />
-              </td> -->
+              <td class="title">
+                <img src="../../../../assets/logo/eventicket-logo-with-title.png" alt="EventicketLogo" style="width: 100%; max-width: 300px" />
+              </td>
               <td>
                 Código de recibo: #{{ receiptData.purchase_code }}<br/>
                 Fecha de creación: {{ getFormatedDate(receiptData.createdAt, 'DD-MM-YYYY') }}<br/>
@@ -25,7 +25,7 @@
           </table>
         </td>
       </tr>
-      <tr class="information">
+      <tr class="information information-part">
         <td colspan="2">
           <table>
             <tr>
@@ -48,12 +48,12 @@
         </td>
       </tr>
       <tr class="heading">
-        <td>Forma de Pago</td>
+        <td>Forma de pago</td>
         <td></td>
         <td></td>
       </tr>
       <tr class="details">
-        <td>VISA</td>
+        <td>VISA DEBITO</td>
         <td></td>
         <td></td>
       </tr>

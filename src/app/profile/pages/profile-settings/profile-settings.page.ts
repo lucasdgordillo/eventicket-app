@@ -62,7 +62,7 @@ export class ProfileSettingsPage implements OnInit {
         this.usersService.updateUser(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
           this.loadUserData();
-          this.messageHelper.presentToast('Perfil actualizado con exito!');
+          this.messageHelper.presentToast('Perfil actualizado con éxito!');
         },
         (error) => {
           this.loadingHelper.dismiss();

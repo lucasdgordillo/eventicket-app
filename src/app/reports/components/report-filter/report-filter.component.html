@@ -3,7 +3,7 @@
     <form name="filterForm" [formGroup]="filterForm">
       <ion-item-group mode="md" class="ion-margin-top">
         <ion-item class="rounded-item">
-          <ion-label position="floating"> Evento: </ion-label>
+          <ion-label position="floating"> Seleccione evento: </ion-label>
           <ion-select formControlName="eventId">
             <ion-select-option *ngFor="let event of events" [value]="event.id">{{ event.title }}</ion-select-option>
           </ion-select>

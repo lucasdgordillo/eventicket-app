@@ -61,7 +61,7 @@ export class EventRrppsPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.createRrpp(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('RRPP creado con exito!');
+          this.messageHelper.presentToast('RRPP creado con éxito!');
           this.loadRrpps();
         },
         (error) => {
@@ -73,7 +73,7 @@ export class EventRrppsPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.editRrpp(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('RRPP actualizado con exito!');
+          this.messageHelper.presentToast('RRPP actualizado con éxito!');
           this.loadRrpps();
         },
         (error) => {
@@ -85,7 +85,7 @@ export class EventRrppsPage implements OnInit, OnDestroy {
         this.loadingHelper.present();
         this.eventsService.deleteRrpp(data.value).subscribe(() => {
           this.loadingHelper.dismiss();
-          this.messageHelper.presentToast('RRPP eliminado con exito!');
+          this.messageHelper.presentToast('RRPP eliminado con éxito!');
           this.loadRrpps();
         },
         (error) => {

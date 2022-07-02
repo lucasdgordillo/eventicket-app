@@ -8,11 +8,18 @@
 </ion-header>
 <ion-content fullscreen>
   <ion-card>
-    <ion-card-title class="ion-text-center"> Compra realizada con exito! </ion-card-title>
+    <ion-card-title class="ion-text-center"> Compra realizada con éxito! </ion-card-title>
     <ion-card-content>
-      <ion-item>
-        <ion-label class="ion-text-center"> Su codigo de confirmacion es: {{ purchaseCode }}</ion-label>
-      </ion-item>
+      <ion-row class="ion-text-center">
+        <ion-col size="12">
+          <ion-label class="ion-text-center"> Su código de confirmación es: </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col size="12">
+          <h1 class="confirmation-code"> {{ purchaseCode }} </h1>
+        </ion-col>
+      </ion-row>
       <div class="container qr-container">
         <ngx-qrcode 
           [value]="purchaseCode" 
@@ -22,7 +29,7 @@
         ></ngx-qrcode>
       </div>
       <ion-item>
-        <ion-text class="ion-text-center"> Ya puede presentar el codigo QR en boleteria </ion-text>
+        <ion-text class="ion-text-center"> Ya puede presentar el código QR en boletería </ion-text>
       </ion-item>
     </ion-card-content>
   </ion-card>

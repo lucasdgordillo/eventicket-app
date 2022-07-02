@@ -38,7 +38,7 @@
       </ion-card>
       <ion-card>
         <ion-card-header>
-          <ion-card-subtitle> Metodo de pago </ion-card-subtitle>
+          <ion-card-subtitle> Método de pago </ion-card-subtitle>
         </ion-card-header>
         <ion-item *ngIf="paymentInfo">
           <ion-icon name="card-outline" slot="start"></ion-icon>
@@ -54,8 +54,8 @@
         </ion-item>
         <ion-row class="ion-text-center">
           <ion-col size="12">
-            <ion-button *ngIf="!paymentInfo" expand="block" fill="outline" (click)="openPaymentMethodModal()"> Agregar metodo de pago </ion-button>
-            <ion-button *ngIf="paymentInfo" expand="block" fill="outline" color="danger" size="small" (click)="deleteMethodPayment()"> Borrar metodo de pago </ion-button>
+            <ion-button *ngIf="!paymentInfo" expand="block" fill="outline" (click)="openPaymentMethodModal()"> Agregar método de pago </ion-button>
+            <ion-button *ngIf="paymentInfo" expand="block" fill="outline" color="danger" size="small" (click)="deleteMethodPayment()"> Borrar método de pago </ion-button>
           </ion-col>
         </ion-row>
       </ion-card>

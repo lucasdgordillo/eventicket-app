@@ -101,7 +101,7 @@ export class EventPage implements OnInit {
 
     this.eventsService.createEvent(this.eventForm.value).subscribe((response) => {
       this.loadingHelper.dismiss();
-      this.messageHelper.presentToast('Evento creado con exito!', 2500);
+      this.messageHelper.presentToast('Evento creado con éxito!', 2500);
       this.router.navigate(['/tabs/events', { reload: true }]);
     },
     (error) => {
@@ -117,7 +117,7 @@ export class EventPage implements OnInit {
       if (!this.isPricesArrayEmpty()) { return; }
       const alert = await this.alertController.create({
         header: 'Crear evento',
-        message: 'Esta usted seguro de crear este evento?',
+        message: 'Está usted seguro de crear este evento?',
         buttons: [
           {
             text: 'Cancelar',

@@ -42,7 +42,7 @@ export class LoginPage {
       },
       (error) => {
         this.loadingHelper.dismiss();
-        this.messageHelper.showAlertError('Credenciales invalidas');
+        this.messageHelper.showAlertError('Credenciales inválidas');
       });
     }
   }

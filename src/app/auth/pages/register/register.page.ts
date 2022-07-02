@@ -79,7 +79,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.get('role').setValue(Role.USER);
       this.authService.register(this.registerForm.value).subscribe(() => {
         this.loadingHelper.dismiss();
-        this.messageHelper.presentToast('Usuario creado con exito!', 2500);
+        this.messageHelper.presentToast('Usuario creado con éxito!', 2500);
         this.router.navigate(['/login']);
       },
       (error) => {
