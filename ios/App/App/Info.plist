@@ -56,5 +56,11 @@
 	<string>To show your location</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to scan barcodes</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take photos and store them inside EvenTicketApp</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Store camera photos to camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To Pick Photos from Library</string>
 </dict>
 </plist>

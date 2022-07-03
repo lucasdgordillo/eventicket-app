@@ -26,7 +26,7 @@ export class ReceiptModalPage implements OnInit {
     let options = {
       documentSize: 'A4',
       type: 'share',
-      fileName: 'Order-Invoice.pdf'
+      fileName: `recibo-${this.receiptData.purchase_code}.pdf`
     };
     this.pdfGenerator.fromData(this.content, options)
       .then((base64) => {

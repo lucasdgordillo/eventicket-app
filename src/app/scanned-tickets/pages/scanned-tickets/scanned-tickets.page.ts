@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { PurchaseStatus } from "src/app/events/models/purchase.interface";
+import { PurchaseStatus, ScannedPurchaseStatus } from "src/app/events/models/purchase.interface";
 import { PurchasesService } from "src/app/tickets/services/purchases.service";
 
 @Component({
@@ -39,7 +39,7 @@ export class ScannedTicketsPage implements OnInit {
       }
       const scannedPurchasesArray = scannedPurchases.data;
       scannedPurchasesArray.forEach(scannedPurchase => {
-        if (scannedPurchase.purchase.status === PurchaseStatus.VERIFIED) {
+        if (scannedPurchase.status === ScannedPurchaseStatus.APPROVED) {
           this.verifiedTickets.push(scannedPurchase);
         } else {
           this.rejectedTickets.push(scannedPurchase);

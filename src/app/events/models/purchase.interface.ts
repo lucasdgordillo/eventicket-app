@@ -5,6 +5,11 @@ export enum PurchaseStatus {
   EXPIRED = "expired" // Cuando la fecha del evento ya paso
 };
 
+export enum ScannedPurchaseStatus {
+  APPROVED = "approved",
+  REJECTED = "rejected"
+};
+
 export interface Purchase {
   id?: number;
   productor?: number;
