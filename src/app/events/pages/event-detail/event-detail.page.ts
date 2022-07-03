@@ -50,6 +50,10 @@ export class EventDetailPage implements OnInit, AfterViewInit {
     }, 1500);
   }
 
+  ionViewDidEnter() {
+    this.loadMap();
+  }
+
   loadEventInformation() {
     this.eventsService.getEventById(this.eventId).subscribe((event) => {
       this.eventData = event.data;
@@ -70,6 +74,7 @@ export class EventDetailPage implements OnInit, AfterViewInit {
         center: this.placeMarkerObj,
         zoom: 15,
       },
+      forceCreate: true
     });
     const marker: Marker = { coordinate: this.placeMarkerObj };
     this.eventPlaceMap.addMarker(marker);
